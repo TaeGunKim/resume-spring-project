@@ -140,7 +140,7 @@ function onclickSave() {
 								<div class="switch-wrap d-flex justify-content-between">
 
 									<label for="thumbnailUrl-1">썸네일 1</label>
-									<input type="radio" id="thumbnailUrl-1" name="thumbnailUrl" value="1" checked>
+									<input type="radio" id="thumbnailUrl-1" name="thumbnailUrl" value="1">
 									<label for="thumbnailUrl-2">썸네일 2</label>
 									<input type="radio" id="thumbnailUrl-2" name="thumbnailUrl" value="2" >
 									<label for="thumbnailUrl-3">썸네일 3</label>

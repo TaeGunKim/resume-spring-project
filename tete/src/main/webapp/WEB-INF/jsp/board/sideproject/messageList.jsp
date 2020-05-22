@@ -91,7 +91,9 @@ function onclickWrite() {
 												<img class="card-img rounded-0" src="/img/blog/list_4.png" alt="">
 											</c:when>
 											<c:otherwise>
+												<!--
 												<img class="card-img rounded-0" src="/img/blog/list_1.png" alt="">
+												 -->
 											</c:otherwise>
 										</c:choose>
 									</a>
