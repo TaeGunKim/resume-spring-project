@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mycompany.myapp.shopcomponent.user.dao.UserDAO">
+
+	<resultMap id="userVOResult" type="com.mycompany.myapp.shopcomponent.user.vo.UserVO">
+		<result property="id" 		column="id" />
+		<result property="passwd" 	column="passwd" />
+	</resultMap>
+
+	<select id="getUser" resultMap="userVOResult">
+	/** getUser */
+		select
+			id,
+			passwd
+		from
+			tbl_user
+		where
+			1=1
+			and id = #{username}
+			and useyn ='Y'
+	</select>
+</mapper>
+

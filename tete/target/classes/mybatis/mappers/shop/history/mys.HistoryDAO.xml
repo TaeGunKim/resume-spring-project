@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mycompany.myapp.shopcomponent.history.dao.HistoryDAO">
+
+	<resultMap id="historyResult" type="com.mycompany.myapp.shopcomponent.history.vo.HistoryVO">
+    	<result property="type"			column="type"			/>
+    	<result property="title"		column="title"			/>
+    	<result property="subtitle"		column="subtitle"		/>
+    	<result property="startdate"	column="startdate"		/>
+    	<result property="enddate"		column="enddate"		/>
+    	<result property="description"	column="description"	/>
+    	<result property="link"			column="link"			/>
+    	<result property="create_date"	column="create_date"	/>
+    </resultMap>
+
+	<select id="getHistoryList" resultMap="historyResult">
+	/** getHistoryList */
+		select
+			type,
+		    title,
+		    subtitle,
+		    startdate,
+		    enddate,
+		    description,
+		    link,
+		    create_date
+		from
+			tbl_history
+		where
+			1=1
+			<if test="type != '' and type != null">
+		    and type= #{type}
+			</if>
+		    and del_yn ='N'
+	</select>
+</mapper>

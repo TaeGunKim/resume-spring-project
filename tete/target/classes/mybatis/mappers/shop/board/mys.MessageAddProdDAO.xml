@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mycompany.myapp.shopcomponent.bbs.dao.MessageAddProdDAO">
+
+
+     <resultMap id="getMessageAddProdResult" type="com.mycompany.myapp.shopcomponent.bbs.vo.MessageAddProdVO">
+        <result property="boardSeq" column="BOARD_SEQ"/>
+        <result property="messageSeq" column="MESSAGE_SEQ"/>
+        <result property="gcode" column="G_CODE"/>
+    </resultMap>
+
+    <select id="getMessageAddProd" parameterType="java.lang.String" resultMap="getMessageAddProdResult">
+        SELECT
+        	BOARD_SEQ,
+        	MESSAGE_SEQ,
+        	G_CODE
+        FROM
+        	PCP_BBS_MESSAGE_ADDPROD
+        WHERE
+        	MESSAGE_SEQ = #{messageSeq}
+        ORDER BY G_CODE ASC
+    </select>
+
+</mapper>

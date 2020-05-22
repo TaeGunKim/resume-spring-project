@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mycompany.myapp.shopcomponent.bbs.dao.MessageRecommendDAO">
+
+
+	<select id="getMessageRecommendRegisterId" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageRecommendVO" resultType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageRecommendVO">
+        SELECT  RECOMMEND_SEQ as recommendSeq,
+			    MESSAGE_SEQ as messageSeq,
+			    CREATE_DATE as createDate,
+			    CREATE_ID as createId,
+			    CREATE_IP as createIp
+		FROM PCP_BBS_MESSAGE_RECOMMEND
+		WHERE MESSAGE_SEQ = #{messageSeq}
+			AND CREATE_ID = #{createId}
+    </select>
+
+    <insert id="insertMessageRecommend" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageRecommendVO" useGeneratedKeys="true" keyProperty="recommendId">
+        INSERT INTO PCP_BBS_MESSAGE_RECOMMEND
+				(
+				MESSAGE_SEQ,
+				CREATE_DATE,
+				CREATE_ID,
+				CREATE_IP)
+				VALUES
+				(
+				#{messageSeq},
+				now(),
+				#{createId},
+				#{createIp}
+
+				)
+        <selectKey keyProperty="commentId" resultType="int" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+</mapper>

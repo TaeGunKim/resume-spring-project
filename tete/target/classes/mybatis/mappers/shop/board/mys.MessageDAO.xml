@@ -1,0 +1,1578 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mycompany.myapp.shopcomponent.bbs.dao.MessageDAO">
+
+	<resultMap id="messageResult" type="com.mycompany.myapp.shopcomponent.bbs.vo.MessageVO">
+		<id property="messageSeq" column="MESSAGE_SEQ" />
+		<result property="boardSeq" column="BOARD_SEQ" />
+		<result property="messageCategorySeq" column="MESSAGE_CATEGORY_SEQ" />
+		<result property="messageCategoryName" column="MESSAGE_CATEGORY_NAME" />
+		<result property="parentMessageSeq" column="PARENT_MESSAGE_SEQ" />
+		<result property="messageLevel" column="MESSAGE_LEVEL" />
+		<result property="tags" column="TAGS" />
+
+		<result property="topFlag" column="TOP_FLAG" />
+		<result property="title" column="TITLE" />
+		<result property="subTitle" column="SUB_TITLE" />
+		<result property="subTitleCnt" column="SUB_TITLE_CNT" />
+		<result property="summaryContents" column="SUMMARY_CONTENTS" />
+		<result property="viewCount" column="VIEW_COUNT" />
+		<result property="replyCount" column="REPLY_COUNT" />
+		<result property="commentCount" column="COMMENT_COUNT" />
+
+		<result property="attachmentCount" column="ATTACHMENT_COUNT" />
+		<result property="scrapCount" column="SCRAP_COUNT" />
+		<result property="recommendCount" column="RECOMMEND_COUNT" />
+		<result property="thumbnailUrl" column="THUMBNAIL_URL" />
+		<result property="homeUrl" column="HOME_URL" />
+		<result property="startDate" column="START_DATE" />
+		<result property="endDate" column="END_DATE" />
+
+		<result property="progressStatus" column="PROGRESS_STATUS" />
+		<result property="licenseType" column="LICENSE_TYPE" />
+		<result property="licensePoint" column="LICENSE_POINT" />
+		<result property="createId" column="CREATE_ID" />
+		<result property="createPwd" column="CREATE_PWD" />
+		<result property="createName" column="CREATE_NAME" />
+		<result property="createNickname" column="CREATE_NICKNAME" />
+		<result property="createEmail" column="CREATE_EMAIL" />
+
+		<result property="createIp" column="CREATE_IP" />
+		<result property="createDate" column="CREATE_DATE" />
+		<result property="createDateDiff" column="CREATE_DATE_DIFF" />
+		<result property="updateId" column="UPDATE_ID" />
+		<result property="updateDate" column="UPDATE_DATE" />
+		<result property="statusType" column="STATUS_TYPE" />
+
+		<result property="varFiled1" column="VAR_FILED1" />
+		<result property="varFiled2" column="VAR_FILED2" />
+		<result property="varFiled3" column="VAR_FILED3" />
+		<result property="varFiled4" column="VAR_FILED4" />
+		<result property="varFiled5" column="VAR_FILED5" />
+		<result property="varFiled6" column="VAR_FILED6" />
+		<result property="varFiled7" column="VAR_FILED7" />
+		<result property="varFiled8" column="VAR_FILED8" />
+		<result property="varFiled9" column="VAR_FILED9" />
+		<result property="varFiled10" column="VAR_FILED10" />
+		<result property="varFileds" column="VAR_FILEDS" />
+		<result property="sortTree" column="SORT_TREE" />
+
+		<result property="showFile1" column="SHOW_FILE1" />
+		<result property="showFile2" column="SHOW_FILE2" />
+
+		<result property="mbSosok" column="MB_SOSOK" />
+
+		<result property="newFlag" column="NEW_FLAG" />
+	</resultMap>
+
+	<resultMap id="messageResult2" type="com.mycompany.myapp.shopcomponent.bbs.vo.MessageVO">
+		<id property="messageSeq" column="MESSAGE_SEQ" />
+		<result property="boardSeq" column="BOARD_SEQ" />
+		<result property="messageCategorySeq" column="MESSAGE_CATEGORY_SEQ" />
+		<result property="messageCategoryName" column="MESSAGE_CATEGORY_NAME" />
+		<result property="parentMessageSeq" column="PARENT_MESSAGE_SEQ" />
+		<result property="messageLevel" column="MESSAGE_LEVEL" />
+		<result property="tags" column="TAGS" />
+
+		<result property="topFlag" column="TOP_FLAG" />
+		<result property="title" column="TITLE" />
+		<result property="subTitle" column="SUB_TITLE" />
+		<result property="subTitleCnt" column="SUB_TITLE_CNT" />
+		<result property="summaryContents" column="SUMMARY_CONTENTS" />
+		<result property="viewCount" column="VIEW_COUNT" />
+		<result property="replyCount" column="REPLY_COUNT" />
+		<result property="commentCount" column="COMMENT_COUNT" />
+
+		<result property="attachmentCount" column="ATTACHMENT_COUNT" />
+		<result property="scrapCount" column="SCRAP_COUNT" />
+		<result property="recommendCount" column="RECOMMEND_COUNT" />
+		<result property="thumbnailUrl" column="THUMBNAIL_URL" />
+		<result property="homeUrl" column="HOME_URL" />
+		<result property="startDate" column="START_DATE" />
+		<result property="endDate" column="END_DATE" />
+
+		<result property="progressStatus" column="PROGRESS_STATUS" />
+		<result property="licenseType" column="LICENSE_TYPE" />
+		<result property="licensePoint" column="LICENSE_POINT" />
+		<result property="createId" column="CREATE_ID" />
+		<result property="createPwd" column="CREATE_PWD" />
+		<result property="createName" column="CREATE_NAME" />
+		<result property="createNickname" column="CREATE_NICKNAME" />
+		<result property="createEmail" column="CREATE_EMAIL" />
+
+		<result property="createIp" column="CREATE_IP" />
+		<result property="createDate" column="CREATE_DATE" />
+		<result property="createDateDiff" column="CREATE_DATE_DIFF" />
+		<result property="updateId" column="UPDATE_ID" />
+		<result property="updateDate" column="UPDATE_DATE" />
+		<result property="statusType" column="STATUS_TYPE" />
+		<result property="contents" column="CONTENTS" />
+	</resultMap>
+
+	<resultMap id="messageResult3" type="com.mycompany.myapp.shopcomponent.bbs.vo.MessageVO">
+		<id property="messageSeq" column="MESSAGE_SEQ" />
+		<result property="boardSeq" column="BOARD_SEQ" />
+		<result property="messageCategorySeq" column="MESSAGE_CATEGORY_SEQ" />
+		<result property="parentMessageSeq" column="PARENT_MESSAGE_SEQ" />
+		<result property="messageLevel" column="MESSAGE_LEVEL" />
+		<result property="tags" column="TAGS" />
+		<result property="topFlag" column="TOP_FLAG" />
+
+		<result property="title" column="TITLE" />
+		<result property="subTitle" column="SUB_TITLE" />
+		<result property="subTitleCnt" column="SUB_TITLE_CNT" />
+		<result property="summaryContents" column="SUMMARY_CONTENTS" />
+		<result property="viewCount" column="VIEW_COUNT" />
+		<result property="replyCount" column="REPLY_COUNT" />
+		<result property="commentCount" column="COMMENT_COUNT" />
+		<result property="attachmentCount" column="ATTACHMENT_COUNT" />
+
+		<result property="scrapCount" column="SCRAP_COUNT" />
+		<result property="recommendCount" column="RECOMMEND_COUNT" />
+		<result property="thumbnailUrl" column="THUMBNAIL_URL" />
+		<result property="homeUrl" column="HOME_URL" />
+		<result property="startDate" column="START_DATE" />
+		<result property="endDate" column="END_DATE" />
+		<result property="progressStatus" column="PROGRESS_STATUS" />
+
+		<result property="licenseType" column="LICENSE_TYPE" />
+		<result property="licensePoint" column="LICENSE_POINT" />
+		<result property="createId" column="CREATE_ID" />
+		<result property="createPwd" column="CREATE_PWD" />
+		<result property="createName" column="CREATE_NAME" />
+		<result property="createNickname" column="CREATE_NICKNAME" />
+		<result property="createEmail" column="CREATE_EMAIL" />
+
+		<result property="createIp" column="CREATE_IP" />
+		<result property="createDate" column="CREATE_DATE" />
+		<result property="createDateDiff" column="CREATE_DATE_DIFF" />
+		<result property="updateId" column="UPDATE_ID" />
+		<result property="updateDate" column="UPDATE_DATE" />
+		<result property="statusType" column="STATUS_TYPE" />
+	</resultMap>
+
+	<resultMap id="messageResult4" type="com.mycompany.myapp.shopcomponent.bbs.vo.MessageVO">
+		<id property="messageSeq" column="MESSAGE_SEQ" />
+		<result property="boardSeq" column="BOARD_SEQ" />
+		<result property="messageCategorySeq" column="MESSAGE_CATEGORY_SEQ" />
+		<result property="messageCategoryName" column="MESSAGE_CATEGORY_NAME" />
+		<result property="parentMessageSeq" column="PARENT_MESSAGE_SEQ" />
+		<result property="messageLevel" column="MESSAGE_LEVEL" />
+		<result property="tags" column="TAGS" />
+
+		<result property="topFlag" column="TOP_FLAG" />
+		<result property="title" column="TITLE" />
+		<result property="subTitle" column="SUB_TITLE" />
+		<result property="subTitleCnt" column="SUB_TITLE_CNT" />
+		<result property="summaryContents" column="SUMMARY_CONTENTS" />
+		<result property="viewCount" column="VIEW_COUNT" />
+		<result property="replyCount" column="REPLY_COUNT" />
+		<result property="commentCount" column="COMMENT_COUNT" />
+
+		<result property="attachmentCount" column="ATTACHMENT_COUNT" />
+		<result property="scrapCount" column="SCRAP_COUNT" />
+		<result property="recommendCount" column="RECOMMEND_COUNT" />
+		<result property="thumbnailUrl" column="THUMBNAIL_URL" />
+		<result property="homeUrl" column="HOME_URL" />
+		<result property="startDate" column="START_DATE" />
+		<result property="endDate" column="END_DATE" />
+
+		<result property="progressStatus" column="PROGRESS_STATUS" />
+		<result property="licenseType" column="LICENSE_TYPE" />
+		<result property="licensePoint" column="LICENSE_POINT" />
+		<result property="createId" column="CREATE_ID" />
+		<result property="createPwd" column="CREATE_PWD" />
+		<result property="createName" column="CREATE_NAME" />
+		<result property="createNickname" column="CREATE_NICKNAME" />
+		<result property="createEmail" column="CREATE_EMAIL" />
+
+		<result property="createIp" column="CREATE_IP" />
+		<result property="createDate" column="CREATE_DATE" />
+		<result property="createDateDiff" column="CREATE_DATE_DIFF" />
+		<result property="updateId" column="UPDATE_ID" />
+		<result property="updateDate" column="UPDATE_DATE" />
+		<result property="statusType" column="STATUS_TYPE" />
+		<result property="contents" column="CONTENTS" />
+		<result property="varFiled1" column="VAR_FILED1" />
+		<result property="varFiled2" column="VAR_FILED2" />
+		<result property="varFiled3" column="VAR_FILED3" />
+		<result property="varFiled4" column="VAR_FILED4" />
+		<result property="varFiled5" column="VAR_FILED5" />
+		<result property="varFiled6" column="VAR_FILED6" />
+		<result property="varFiled7" column="VAR_FILED7" />
+		<result property="varFiled8" column="VAR_FILED8" />
+		<result property="varFiled9" column="VAR_FILED9" />
+		<result property="varFiled10" column="VAR_FILED10" />
+		<result property="varFileds" column="VAR_FILEDS" />
+
+		<result property="mbSosok" column="MB_SOSOK" />
+
+		<result property="imgList" column="IMGLIST" />
+		<result property="sortTree" column="SORT_TREE" />
+	</resultMap>
+
+	<resultMap id="messageMainResult" type="com.mycompany.myapp.shopcomponent.bbs.vo.MessageVO">
+		<id property="messageSeq" column="MESSAGE_SEQ" />
+		<result property="boardSeq" column="BOARD_SEQ" />
+		<result property="subTitle" column="SUB_TITLE" />
+		<result property="subTitleCnt" column="SUB_TITLE_CNT" />
+		<result property="summaryContents" column="SUMMARY_CONTENTS" />
+		<result property="title" column="TITLE" />
+		<result property="createName" column="CREATE_NAME" />
+		<result property="createDate" column="CREATE_DATE" />
+		<result property="createDateDiff" column="CREATE_DATE_DIFF" />
+		<result property="contents" column="CONTENTS" />
+		<result property="sortTree" column="SORT_TREE" />
+	</resultMap>
+
+	<!-- 목록에 대한 검색조건은 같은걸로 사용 -->
+	<sql id="getListWhere">
+		FROM PCP_BBS_MESSAGE BM
+		<if test="searchColumn == 'contents' or searchColumn == 'title_contents'">
+			LEFT OUTER JOIN PCP_BBS_MESSAGE_CONTENTS BMC ON BMC.MESSAGE_SEQ =
+			BM.MESSAGE_SEQ
+		</if>
+		LEFT OUTER JOIN PCP_BBS_MESSAGE_CATEGORY BMT ON
+		BMT.MESSAGE_CATEGORY_SEQ = BM.MESSAGE_CATEGORY_SEQ
+
+		WHERE BM.BOARD_SEQ = #{boardSeq} AND (IFNULL(BM.TOP_FLAG,'0') = 0 or BM.TOP_FLAG = '1')
+
+		<if test="specialTerms != null and specialTerms != ''">
+			<choose>
+				<when test="specialTerms == 'goodsusereviewFrame'">
+					AND BM.CREATE_DATE > date_add(now(),interval -1 year)
+				</when>
+			</choose>
+		</if>
+
+		<choose>
+			<when test="statusType == 'me'">
+				AND (
+				(BM.CREATE_ID = 'icon1' AND BM.STATUS_TYPE = '2')
+				OR
+				(BM.PARENT_MESSAGE_SEQ &gt;= 0 AND BM.STATUS_TYPE = '1')
+				)
+			</when>
+			<when test="statusType == '12'">
+				AND BM.STATUS_TYPE in ('1','2')
+			</when>
+			<when test="statusType != null and statusType != ''">
+				AND BM.STATUS_TYPE = #{statusType}
+			</when>
+			<otherwise>
+				AND BM.STATUS_TYPE &gt; 0 <!-- 삭제가 안된 게시물 관리자 전용 -->
+			</otherwise>
+
+		</choose>
+
+		<if test="messageCategorySeq != null and messageCategorySeq != ''">
+			AND BM.MESSAGE_CATEGORY_SEQ = #{messageCategorySeq}
+		</if>
+
+
+		<if test="createId != null and createId != ''">
+			AND BM.CREATE_ID = #{createId}
+		</if>
+
+		<if test="createDateFrom != null and createDateFrom != ''">
+			<if test="createDateTo != null and createDateTo != ''">
+				AND DATE_FORMAT(BM.CREATE_DATE, '%Y-%m-%d') BETWEEN #{createDateFrom}
+				AND #{createDateTo}
+			</if>
+		</if>
+
+		<if test="tags != null">
+			<foreach item="tags" collection="tags" open="AND ("
+				separator="or" close=")">
+				BM.TITLE like '%${tags}%'
+			</foreach>
+
+			AND BM.MESSAGE_SEQ &lt;&gt; #{messageSeq}
+		</if>
+
+		<!-- select box로 검색할경우 -->
+		<if test="searchValue != null and searchValue != ''">
+			<choose>
+				<when test="searchColumn == 'title'">
+					AND INSTR(LOWER(BM.TITLE),LOWER(#{searchValue})) &gt; 0
+				</when>
+				<when test="searchColumn == 'createName'">
+					AND INSTR(LOWER(BM.CREATE_NAME),LOWER(#{searchValue})) &gt; 0
+				</when>
+				<when test="searchColumn == 'createNickname'">
+					AND INSTR(LOWER(BM.CREATE_NICKNAME),LOWER(#{searchValue})) &gt; 0
+				</when>
+				<when test="searchColumn == 'email'">
+					AND INSTR(LOWER(BM.EMAIL),LOWER(#{searchValue})) &gt; 0
+				</when>
+				<when test="searchColumn == 'tags'">
+					AND INSTR(LOWER(BM.TAGS),LOWER(#{searchValue})) &gt; 0
+				</when>
+				<when test="searchColumn == 'contents'">
+					AND INSTR(LOWER(BMC.CONTENTS),LOWER(#{searchValue})) &gt; 0
+				</when>
+				<when test="searchColumn == 'title_contents'">
+					AND (INSTR(LOWER(BM.TITLE),LOWER(#{searchValue})) &gt; 0 OR
+					INSTR(LOWER(BMC.CONTENTS),LOWER(#{searchValue})) &gt; 0)
+				</when>
+				<when test="searchColumn == 'varFiled2'">
+					AND INSTR(LOWER(BM.VAR_FILED2),LOWER(#{searchValue})) &gt; 0
+				</when>
+				<when test="searchColumn == 'varFiled7'">
+					AND INSTR(LOWER(BM.VAR_FILED7),LOWER(#{searchValue})) &gt; 0
+				</when>
+				<when test="searchColumn == 'varFiled8'">
+					AND INSTR(LOWER(BM.VAR_FILED8),LOWER(#{searchValue})) &gt; 0
+				</when>
+			</choose>
+		</if>
+
+		<if test="varFiled1 != null and varFiled1 != ''">
+			AND INSTR(LOWER(BM.VAR_FILED1),LOWER(#{varFiled1})) &gt; 0
+		</if>
+		<if test="varFiled2 != null and varFiled2 != ''">
+			AND INSTR(LOWER(BM.VAR_FILED2),LOWER(#{varFiled2})) &gt; 0
+		</if>
+		<if test="varFiled3 != null and varFiled3 != ''">
+			AND INSTR(LOWER(BM.VAR_FILED3),LOWER(#{varFiled3})) &gt; 0
+		</if>
+		<if test="varFiled4 != null and varFiled4 != ''">
+			AND INSTR(LOWER(BM.VAR_FILED4),LOWER(#{varFiled4})) &gt; 0
+		</if>
+		<if test="varFiled5 != null and varFiled5 != ''">
+			AND INSTR(LOWER(BM.VAR_FILED5),LOWER(#{varFiled5})) &gt; 0
+		</if>
+		<if test="varFiled6 != null and varFiled6 != ''">
+			AND INSTR(LOWER(BM.VAR_FILED6),LOWER(#{varFiled6})) &gt; 0
+		</if>
+		<if test="varFiled7 != null and varFiled7 != ''">
+			AND INSTR(LOWER(BM.VAR_FILED7),LOWER(#{varFiled7})) &gt; 0
+		</if>
+		<if test="varFiled8 != null and varFiled8 != ''">
+			AND INSTR(LOWER(BM.VAR_FILED8),LOWER(#{varFiled8})) &gt; 0
+		</if>
+		<if test="varFiled9 != null and varFiled9 != ''">
+			AND INSTR(LOWER(BM.VAR_FILED9),LOWER(#{varFiled9})) &gt; 0
+		</if>
+		<if test="varFiled10 != null and varFiled10 != ''">
+			AND INSTR(LOWER(BM.VAR_FILED10),LOWER(#{varFiled10})) &gt; 0
+		</if>
+
+		<if test="subTitle != null and subTitle != ''">
+			AND BM.SUB_TITLE = #{subTitle}
+		</if>
+
+
+	</sql>
+
+	<!-- 조회:목록전체갯수 -->
+	<select id="getListTotalCount" resultType="java.lang.Integer"
+		parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageSearchVO">
+		SELECT COUNT(*) AS TOTAL_COUNT
+		<include refid="getListWhere" />
+	</select>
+
+	<select id="getListTotalCountTest" resultType="java.lang.Integer" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageSearchVO">
+		SELECT COUNT(*) AS TOTAL_COUNT
+		<include refid="getListWhere" />
+	</select>
+
+	<!-- 조회:장보기 공지사항 목록전체갯수 -->
+	<select id="getListTotalCount5" resultType="java.lang.Integer"
+		parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageSearchVO">
+	/** getListTotalCount5 */
+		SELECT COUNT(*) AS TOTAL_COUNT
+		<include refid="getListWhere" />
+		AND BM.CREATE_DATE >= date_add(now(), interval -1 month)
+	</select>
+
+	<!-- 조회:목록 -->
+	<select id="getMessageList" resultMap="messageResult"
+		parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageSearchVO">
+		/** getMessageList */
+		SELECT
+		BM.MESSAGE_SEQ,
+		BM.BOARD_SEQ,
+		BM.MESSAGE_CATEGORY_SEQ,
+		BMT.MESSAGE_CATEGORY_NAME,
+		BM.PARENT_MESSAGE_SEQ,
+		BM.MESSAGE_LEVEL,
+		BM.TAGS,
+
+		BM.TOP_FLAG,
+		BM.TITLE,
+		BM.SUB_TITLE,
+		BM.SUMMARY_CONTENTS,
+		BM.VIEW_COUNT,
+		BM.REPLY_COUNT,
+		BM.COMMENT_COUNT,
+
+		BM.ATTACHMENT_COUNT,
+		BM.SCRAP_COUNT,
+		BM.RECOMMEND_COUNT,
+		BM.THUMBNAIL_URL,
+		BM.HOME_URL,
+		BM.START_DATE,
+		BM.END_DATE,
+
+		BM.PROGRESS_STATUS,
+		BM.LICENSE_TYPE,
+		BM.LICENSE_POINT,
+		BM.CREATE_ID,
+		BM.CREATE_PWD,
+		BM.CREATE_NAME,
+		BM.CREATE_NICKNAME,
+		BM.CREATE_EMAIL,
+
+		BM.CREATE_IP,
+		DATE_FORMAT(BM.CREATE_DATE, '%y.%m.%d') AS CREATE_DATE,
+		BM.CREATE_DATE as  CREATE_DATE2,
+		BM.UPDATE_ID,
+		BM.UPDATE_DATE,
+		BM.STATUS_TYPE,
+
+		BM.VAR_FILED1,
+		BM.VAR_FILED2,
+		BM.VAR_FILED3,
+		BM.VAR_FILED4,
+		BM.VAR_FILED5,
+		BM.VAR_FILED6,
+		BM.VAR_FILED7,
+		BM.VAR_FILED8,
+		BM.VAR_FILED9,
+		BM.VAR_FILED10,
+
+		BM.VAR_FILEDS,
+		BM.SORT_TREE,
+
+		BM.MB_SOSOK,
+
+		case when DATE_FORMAT(NOW(),'%y.%m.%d') =
+		DATE_FORMAT(BM.CREATE_DATE,'%y.%m.%d') then 'Y' else 'N' end NEW_FLAG
+		<include refid="getListWhere" />
+
+		<!-- Sorting -->
+		<choose>
+			<when test="sortColumn != null">
+				<choose>
+					<when test="sortColumn == 'messageSeq'">
+						ORDER BY MESSAGE_SEQ ${sortValue}
+					</when>
+					<when test="sortColumn == 'title'">
+						ORDER BY TITLE ${sortValue}
+					</when>
+					<when test="sortColumn == 'createDate'">
+						ORDER BY CREATE_DATE ${sortValue}
+					</when>
+					<when test="sortColumn == 'viewCount'">
+						ORDER BY VIEW_COUNT ${sortValue}
+					</when>
+					<when test="sortColumn == 'safetycheck'">
+						ORDER BY VAR_FILED6 ${sortValue}
+					</when>
+				</choose>
+			</when>
+			<otherwise>
+				ORDER BY TOP_FLAG DESC,CREATE_DATE2 DESC
+			</otherwise>
+		</choose>
+		LIMIT #{startIndex}, #{row}
+
+	</select>
+
+	<select id="getMessageTopList" resultMap="messageResult">
+		SELECT
+		BM.MESSAGE_SEQ,
+		BM.BOARD_SEQ,
+		BM.MESSAGE_CATEGORY_SEQ,
+		BMT.MESSAGE_CATEGORY_NAME,
+		BM.PARENT_MESSAGE_SEQ,
+		BM.MESSAGE_LEVEL,
+		BM.TAGS,
+
+		BM.TOP_FLAG,
+		BM.TITLE,
+		BM.SUB_TITLE,
+		BM.SUMMARY_CONTENTS,
+		BM.VIEW_COUNT,
+		BM.REPLY_COUNT,
+		BM.COMMENT_COUNT,
+
+		BM.ATTACHMENT_COUNT,
+		BM.SCRAP_COUNT,
+		BM.RECOMMEND_COUNT,
+		BM.THUMBNAIL_URL,
+		BM.HOME_URL,
+		BM.START_DATE,
+		BM.END_DATE,
+
+		BM.PROGRESS_STATUS,
+		BM.LICENSE_TYPE,
+		BM.LICENSE_POINT,
+		BM.CREATE_ID,
+		BM.CREATE_PWD,
+		BM.CREATE_NAME,
+		BM.CREATE_NICKNAME,
+		BM.CREATE_EMAIL,
+
+		BM.CREATE_IP,
+		BM.CREATE_DATE,
+		BM.UPDATE_ID,
+		BM.UPDATE_DATE,
+		BM.STATUS_TYPE,
+		case when NOW() &lt;= DATE_FORMAT(BM.CREATE_DATE+2,'yyyy-mm-dd') then 'Y'
+		else 'N' end NEW_FLAG
+		FROM PCP_BBS_MESSAGE BM
+		LEFT OUTER JOIN PCP_BBS_MESSAGE_CATEGORY BMT ON BMT.MESSAGE_CATEGORY_SEQ =
+		BM.MESSAGE_CATEGORY_SEQ
+		WHERE BM.BOARD_SEQ = #{boardSeq}
+		AND BM.STATUS_TYPE &gt; 0
+		AND BM.TOP_FLAG = '1'
+		ORDER BY BM.MESSAGE_SEQ DESC
+	</select>
+
+	<select id="getMessageCount" resultType="java.lang.Integer">
+		SELECT COUNT(MESSAGE_SEQ) AS TOTAL_COUNT
+		FROM PCP_BBS_MESSAGE
+		WHERE HOME_URL = #{homeUrl}
+	</select>
+
+	<select id="getMessageAllList" resultMap="messageResult3">
+		SELECT
+		MESSAGE_SEQ,
+		BOARD_SEQ,
+		MESSAGE_CATEGORY_SEQ,
+		PARENT_MESSAGE_SEQ,
+		MESSAGE_LEVEL,
+		TAGS,
+		TOP_FLAG,
+
+		TITLE,
+		SUB_TITLE,
+		SUMMARY_CONTENTS,
+		VIEW_COUNT,
+		REPLY_COUNT,
+		COMMENT_COUNT,
+		ATTACHMENT_COUNT,
+
+		SCRAP_COUNT,
+		RECOMMEND_COUNT,
+		THUMBNAIL_URL,
+		HOME_URL,
+		START_DATE,
+		END_DATE,
+		PROGRESS_STATUS,
+
+		LICENSE_TYPE,
+		LICENSE_POINT,
+		CREATE_ID,
+		CREATE_PWD,
+		CREATE_NAME,
+		CREATE_NICKNAME,
+		CREATE_EMAIL,
+		CREATE_IP,
+
+		CREATE_DATE,
+		UPDATE_ID,
+		UPDATE_DATE,
+		STATUS_TYPE
+		FROM PCP_BBS_MESSAGE
+		WHERE STATUS_TYPE &gt; 0
+		ORDER BY CREATE_DATE ASC
+	</select>
+
+	<select id="getRandomMessages" resultMap="messageResult"
+		parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageSearchVO">
+		SELECT T1.*, #{boardSeq} as BOARD_SEQ
+
+		FROM(
+		SELECT
+		RAND() AS RANDOMNO,
+		BM.MESSAGE_SEQ,
+		BM.BOARD_SEQ,
+		BM.MESSAGE_CATEGORY_SEQ,
+		BMT.MESSAGE_CATEGORY_NAME,
+		BM.PARENT_MESSAGE_SEQ,
+		BM.MESSAGE_LEVEL,
+		BM.TAGS,
+
+		BM.TOP_FLAG,
+		BM.TITLE,
+		BM.SUB_TITLE,
+		BM.SUMMARY_CONTENTS,
+		BM.VIEW_COUNT,
+		BM.REPLY_COUNT,
+		BM.COMMENT_COUNT,
+
+		BM.ATTACHMENT_COUNT,
+		BM.SCRAP_COUNT,
+		BM.RECOMMEND_COUNT,
+		BM.THUMBNAIL_URL,
+		BM.HOME_URL,
+		BM.START_DATE,
+		BM.END_DATE,
+
+		BM.PROGRESS_STATUS,
+		BM.LICENSE_TYPE,
+		BM.LICENSE_POINT,
+		BM.CREATE_ID,
+		BM.CREATE_PWD,
+		BM.CREATE_NAME,
+		BM.CREATE_NICKNAME,
+		BM.CREATE_EMAIL,
+
+		BM.CREATE_IP,
+		BM.CREATE_DATE,
+		BM.UPDATE_ID,
+		BM.UPDATE_DATE,
+		BM.STATUS_TYPE,
+
+		BM.VAR_FILED1,
+		BM.VAR_FILED2,
+		BM.VAR_FILED3,
+		BM.VAR_FILED4,
+		BM.VAR_FILED5,
+		BM.VAR_FILED6,
+		BM.VAR_FILED7,
+		BM.VAR_FILED8,
+		BM.VAR_FILED9,
+		BM.VAR_FILED10,
+		BM.VAR_FILEDS,
+
+
+		case when NOW() &lt;= DATE_FORMAT(BM.CREATE_DATE+2,'yyyy-mm-dd') then 'Y'
+		else 'N' end NEW_FLAG
+		<include refid="getListWhere" />
+
+		LIMIT 0, 100
+		) T1
+		ORDER BY T1.RANDOMNO ASC
+		LIMIT 0, 10
+	</select>
+
+	<select id="getMessageReplyList" resultMap="messageResult2">
+		SELECT
+		BM.MESSAGE_SEQ,
+		BM.BOARD_SEQ,
+		BM.MESSAGE_CATEGORY_SEQ,
+		BMT.MESSAGE_CATEGORY_NAME,
+		BM.PARENT_MESSAGE_SEQ,
+		BM.MESSAGE_LEVEL,
+		BM.TAGS,
+
+		BM.TOP_FLAG,
+		BM.TITLE,
+		BM.SUB_TITLE,
+		BM.SUMMARY_CONTENTS,
+		BM.VIEW_COUNT,
+		BM.REPLY_COUNT,
+		BM.COMMENT_COUNT,
+
+		BM.ATTACHMENT_COUNT,
+		BM.SCRAP_COUNT,
+		BM.RECOMMEND_COUNT,
+		BM.THUMBNAIL_URL,
+		BM.HOME_URL,
+		BM.START_DATE,
+		BM.END_DATE,
+
+		BM.PROGRESS_STATUS,
+		BM.LICENSE_TYPE,
+		BM.LICENSE_POINT,
+		BM.CREATE_ID,
+		BM.CREATE_PWD,
+		BM.CREATE_NAME,
+		BM.CREATE_NICKNAME,
+		BM.CREATE_EMAIL,
+
+		BM.CREATE_IP,
+		BM.CREATE_DATE,
+		BM.UPDATE_ID,
+		BM.UPDATE_DATE,
+		BM.STATUS_TYPE,
+		BM.CONTENTS
+		FROM PCP_BBS_MESSAGE BM LEFT OUTER JOIN PCP_BBS_MESSAGE_CONTENTS BMC ON
+		BMC.MESSAGE_SEQ = BM.MESSAGE_SEQ
+		LEFT OUTER JOIN PCP_BBS_MESSAGE_CATEGORY BMT ON BMT.MESSAGE_CATEGORY_SEQ =
+		BM.MESSAGE_CATEGORY_SEQ
+		WHERE BM.PARENT_MESSAGE_SEQ =
+		#{parentMessageSeq}
+		AND BM.PARENT_MESSAGE_SEQ &gt; 0 <!-- 자식글만 -->
+		AND BM.STATUS_TYPE &gt; 0 <!-- 삭제안된건만 -->
+		AND IFNULL(BM.TOP_FLAG,'0') &lt;&gt; '1'<!-- 일반게시물(공지아님) -->
+		<if test="statusType > 1">
+			AND BM.STATUS_TYPE = #{statusType}
+		</if>
+		ORDER BY BM.MESSAGE_SEQ DESC
+	</select>
+
+	<select id="getMessageLevelList" resultMap="messageResult2">
+		SELECT
+		BM.MESSAGE_SEQ,
+		BM.BOARD_SEQ,
+		BM.MESSAGE_CATEGORY_SEQ,
+		BMT.MESSAGE_CATEGORY_NAME,
+		BM.PARENT_MESSAGE_SEQ,
+		BM.MESSAGE_LEVEL,
+		BM.TAGS,
+
+		BM.TOP_FLAG,
+		BM.TITLE,
+		BM.SUB_TITLE,
+		BM.SUMMARY_CONTENTS,
+		BM.VIEW_COUNT,
+		BM.REPLY_COUNT,
+		BM.COMMENT_COUNT,
+
+		BM.ATTACHMENT_COUNT,
+		BM.SCRAP_COUNT,
+		BM.RECOMMEND_COUNT,
+		BM.THUMBNAIL_URL,
+		BM.HOME_URL,
+		BM.START_DATE,
+		BM.END_DATE,
+
+		BM.PROGRESS_STATUS,
+		BM.LICENSE_TYPE,
+		BM.LICENSE_POINT,
+		BM.CREATE_ID,
+		BM.CREATE_PWD,
+		BM.CREATE_NAME,
+		BM.CREATE_NICKNAME,
+		BM.CREATE_EMAIL,
+
+		BM.CREATE_IP,
+		BM.CREATE_DATE,
+		BM.UPDATE_ID,
+		BM.UPDATE_DATE,
+		BM.STATUS_TYPE,
+		BMC.CONTENTS
+		FROM PCP_BBS_MESSAGE BM
+		LEFT OUTER JOIN PCP_BBS_MESSAGE_CONTENTS BMC ON BMC.MESSAGE_SEQ =
+		BM.MESSAGE_SEQ
+		LEFT OUTER JOIN PCP_BBS_MESSAGE_CATEGORY BMT ON BMT.MESSAGE_CATEGORY_SEQ =
+		BM.MESSAGE_CATEGORY_SEQ
+		WHERE BM.PARENT_MESSAGE_SEQ = #{messageSeq}
+		AND BM.STATUS_TYPE &gt; 0 <!-- 삭제안된건만 -->
+	</select>
+
+	<select id="getMessageMainList" resultMap="messageResult">
+		SELECT
+		BB.BOARD_ID,
+		BM.MESSAGE_SEQ,
+		BM.BOARD_SEQ,
+		BM.MESSAGE_CATEGORY_SEQ,
+		BMT.MESSAGE_CATEGORY_NAME,
+		BM.PARENT_MESSAGE_SEQ,
+		BM.MESSAGE_LEVEL,
+		BM.TAGS,
+
+		BM.TOP_FLAG,
+		BM.TITLE,
+		BM.SUB_TITLE,
+		BM.SUMMARY_CONTENTS,
+		BM.VIEW_COUNT,
+		BM.REPLY_COUNT,
+		BM.COMMENT_COUNT,
+
+		BM.ATTACHMENT_COUNT,
+		BM.SCRAP_COUNT,
+		BM.RECOMMEND_COUNT,
+		BM.THUMBNAIL_URL,
+		BM.HOME_URL,
+		BM.START_DATE,
+		BM.END_DATE,
+
+		BM.PROGRESS_STATUS,
+		BM.LICENSE_TYPE,
+		BM.LICENSE_POINT,
+		BM.CREATE_ID,
+		BM.CREATE_PWD,
+		BM.CREATE_NAME,
+		BM.CREATE_NICKNAME,
+		BM.CREATE_EMAIL,
+
+		BM.CREATE_IP,
+		BM.CREATE_DATE,
+		BM.UPDATE_ID,
+		BM.UPDATE_DATE,
+		BM.STATUS_TYPE,
+
+		BM.VAR_FILED1,
+		BM.VAR_FILED2,
+		BM.VAR_FILED3,
+		BM.VAR_FILED4,
+		BM.VAR_FILED5,
+		BM.VAR_FILED6,
+		BM.VAR_FILED7,
+		BM.VAR_FILED8,
+		BM.VAR_FILED9,
+		BM.VAR_FILED10,
+		BM.VAR_FILEDS,
+
+		BMC.CONTENTS
+		FROM PCP_BBS_MESSAGE BM
+		LEFT OUTER JOIN PCP_BBS_BOARD BB ON BB.BOARD_SEQ = BM.BOARD_SEQ
+		LEFT OUTER JOIN PCP_BBS_MESSAGE_CONTENTS BMC ON BMC.MESSAGE_SEQ =
+		BM.MESSAGE_SEQ
+		LEFT OUTER JOIN PCP_BBS_MESSAGE_CATEGORY BMT ON BMT.MESSAGE_CATEGORY_SEQ =
+		BM.MESSAGE_CATEGORY_SEQ
+		WHERE BM.STATUS_TYPE = 2
+		AND BM.BOARD_SEQ = #{param1}
+		ORDER BY BM.MESSAGE_SEQ DESC
+		LIMIT 0, #{param2}
+	</select>
+
+	<select id="getMessageBestList" resultMap="messageMainResult">
+		SELECT
+		BM.MESSAGE_SEQ,
+		BM.BOARD_SEQ,
+		BM.TITLE,
+		BM.SUB_TITLE,
+		BM.SUMMARY_CONTENTS,
+		BM.CREATE_NAME,
+		BM.CREATE_DATE,
+		BMC.CONTENTS
+		FROM PCP_BBS_MESSAGE BM
+		LEFT OUTER JOIN PCP_BBS_MESSAGE_CONTENTS BMC ON BMC.MESSAGE_SEQ =
+		BM.MESSAGE_SEQ
+		LEFT OUTER JOIN PCP_BBS_MESSAGE_CATEGORY BMT ON BMT.MESSAGE_CATEGORY_SEQ =
+		BM.MESSAGE_CATEGORY_SEQ
+		WHERE BM.STATUS_TYPE &gt; 0
+		AND BM.BOARD_SEQ = #{boardSeq}
+		<if test="mbrLevel != null and mbrLevel != ''">
+			AND BM.CREATE_ID IN (SELECT MBR_ID FROM MBR_ACCOUNT WHERE
+			LEVEL=#{mbrLevel})
+		</if>
+
+		ORDER BY VIEW_COUNT DESC
+		LIMIT #{startIndex}, #{row}
+	</select>
+
+	<!-- 메세지 읽어오기 -->
+	<select id="getMessageOne" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageVO"
+		resultMap="messageResult4">
+		SELECT
+		BM.MESSAGE_SEQ,
+		BM.BOARD_SEQ,
+		BM.MESSAGE_CATEGORY_SEQ,
+		BMT.MESSAGE_CATEGORY_NAME,
+		BM.PARENT_MESSAGE_SEQ,
+		BM.MESSAGE_LEVEL,
+		BM.TAGS,
+
+		BM.TOP_FLAG,
+		BM.TITLE,
+		BM.SUB_TITLE,
+		BM.SUMMARY_CONTENTS,
+		BM.VIEW_COUNT,
+		BM.REPLY_COUNT,
+		BM.COMMENT_COUNT,
+
+		BM.ATTACHMENT_COUNT,
+		BM.SCRAP_COUNT,
+		BM.RECOMMEND_COUNT,
+		BM.THUMBNAIL_URL,
+		BM.HOME_URL,
+		BM.START_DATE,
+		BM.END_DATE,
+
+		BM.PROGRESS_STATUS,
+		BM.LICENSE_TYPE,
+		BM.LICENSE_POINT,
+		BM.CREATE_ID,
+		BM.CREATE_PWD,
+		BM.CREATE_NAME,
+		BM.CREATE_NICKNAME,
+		BM.CREATE_EMAIL,
+
+		BM.CREATE_IP,
+		DATE_FORMAT(BM.CREATE_DATE, '%Y.%m.%d') AS CREATE_DATE,
+		BM.UPDATE_ID,
+		BM.UPDATE_DATE,
+		BM.STATUS_TYPE,
+		BMC.CONTENTS,
+		BM.VAR_FILED1,
+		BM.VAR_FILED2,
+		BM.VAR_FILED3,
+		BM.VAR_FILED4,
+		BM.VAR_FILED5,
+		BM.VAR_FILED6,
+		BM.VAR_FILED7,
+		BM.VAR_FILED8,
+		BM.VAR_FILED9,
+		BM.VAR_FILED10,
+		BM.VAR_FILEDS,
+		'' AS IMGLIST,
+		BM.SORT_TREE
+		FROM PCP_BBS_MESSAGE BM
+		LEFT OUTER JOIN PCP_BBS_MESSAGE_CONTENTS BMC ON BMC.MESSAGE_SEQ =
+		BM.MESSAGE_SEQ
+		LEFT OUTER JOIN PCP_BBS_MESSAGE_CATEGORY BMT ON BMT.MESSAGE_CATEGORY_SEQ =
+		BM.MESSAGE_CATEGORY_SEQ
+		WHERE BM.MESSAGE_SEQ = #{param2}
+		AND BM.BOARD_SEQ = #{param1}
+		AND BM.STATUS_TYPE &gt; 0 <!-- 삭제안된건만 -->
+	</select>
+	<select id="getMessageReplyOne" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageVO"
+		resultMap="messageResult4">
+		SELECT
+		BM.MESSAGE_SEQ,
+		BM.BOARD_SEQ,
+		BM.MESSAGE_CATEGORY_SEQ,
+		BMT.MESSAGE_CATEGORY_NAME,
+		BM.PARENT_MESSAGE_SEQ,
+		BM.MESSAGE_LEVEL,
+		BM.TAGS,
+
+		BM.TOP_FLAG,
+		BM.TITLE,
+		BM.SUB_TITLE,
+		BM.SUMMARY_CONTENTS,
+		BM.VIEW_COUNT,
+		BM.REPLY_COUNT,
+		BM.COMMENT_COUNT,
+
+		BM.ATTACHMENT_COUNT,
+		BM.SCRAP_COUNT,
+		BM.RECOMMEND_COUNT,
+		BM.THUMBNAIL_URL,
+		BM.HOME_URL,
+		BM.START_DATE,
+		BM.END_DATE,
+
+		BM.PROGRESS_STATUS,
+		BM.LICENSE_TYPE,
+		BM.LICENSE_POINT,
+		BM.CREATE_ID,
+		BM.CREATE_PWD,
+		BM.CREATE_NAME,
+		BM.CREATE_NICKNAME,
+		BM.CREATE_EMAIL,
+
+		BM.CREATE_IP,
+		DATE_FORMAT(BM.CREATE_DATE, '%Y.%m.%d') AS CREATE_DATE,
+		BM.UPDATE_ID,
+		BM.UPDATE_DATE,
+		BM.STATUS_TYPE,
+		BMC.CONTENTS,
+		BM.VAR_FILED1,
+		BM.VAR_FILED2,
+		BM.VAR_FILED3,
+		BM.VAR_FILED4,
+		BM.VAR_FILED5,
+		BM.VAR_FILED6,
+		BM.VAR_FILED7,
+		BM.VAR_FILED8,
+		BM.VAR_FILED9,
+		BM.VAR_FILED10,
+		BM.VAR_FILEDS,
+
+		BM.SORT_TREE
+		FROM PCP_BBS_MESSAGE BM
+		LEFT OUTER JOIN PCP_BBS_MESSAGE_CONTENTS BMC ON BMC.MESSAGE_SEQ =
+		BM.MESSAGE_SEQ
+		LEFT OUTER JOIN PCP_BBS_MESSAGE_CATEGORY BMT ON BMT.MESSAGE_CATEGORY_SEQ =
+		BM.MESSAGE_CATEGORY_SEQ
+		WHERE BM.PARENT_MESSAGE_SEQ = #{param2}
+		AND BM.BOARD_SEQ = #{param1}
+		AND BM.STATUS_TYPE &gt; 0 <!-- 삭제안된건만 -->
+	</select>
+
+	<!-- 메세지 읽어오기 -->
+	<select id="getMessageOne2" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageVO"
+		resultMap="messageResult4">
+		SELECT
+		MESSAGE_SEQ,
+		BOARD_SEQ,
+		CREATE_ID
+		FROM PCP_BBS_MESSAGE
+		WHERE MESSAGE_SEQ = #{messageSeq}
+		AND STATUS_TYPE &gt; 0 <!-- 삭제안된건만 -->
+	</select>
+
+	<select id="getMessageView" resultMap="messageResult2">
+		SELECT
+		BM.MESSAGE_SEQ,
+		BM.BOARD_SEQ,
+		BM.MESSAGE_CATEGORY_SEQ,
+		BMT.MESSAGE_CATEGORY_NAME,
+		BM.PARENT_MESSAGE_SEQ,
+		BM.MESSAGE_LEVEL,
+		BM.TAGS,
+
+		BM.TOP_FLAG,
+		BM.TITLE,
+		BM.SUB_TITLE,
+		BM.SUMMARY_CONTENTS,
+		BM.VIEW_COUNT,
+		BM.REPLY_COUNT,
+		BM.COMMENT_COUNT,
+
+		BM.ATTACHMENT_COUNT,
+		BM.SCRAP_COUNT,
+		BM.RECOMMEND_COUNT,
+		BM.THUMBNAIL_URL,
+		BM.HOME_URL,
+		BM.START_DATE,
+		BM.END_DATE,
+
+		BM.PROGRESS_STATUS,
+		BM.LICENSE_TYPE,
+		BM.LICENSE_POINT,
+		BM.CREATE_ID,
+		BM.CREATE_PWD,
+		BM.CREATE_NAME,
+		BM.CREATE_NICKNAME,
+		BM.CREATE_EMAIL,
+
+		BM.CREATE_IP,
+		BM.CREATE_DATE,
+		BM.UPDATE_ID,
+		BM.UPDATE_DATE,
+		BM.STATUS_TYPE,
+		BMC.CONTENTS
+		FROM PCP_BBS_MESSAGE BM
+		LEFT OUTER JOIN PCP_BBS_MESSAGE_CONTENTS BMC ON BMC.MESSAGE_SEQ =
+		BM.MESSAGE_SEQ
+		LEFT OUTER JOIN PCP_BBS_MESSAGE_CATEGORY BMT ON BMT.MESSAGE_CATEGORY_SEQ =
+		BM.MESSAGE_CATEGORY_SEQ
+		WHERE BM.MESSAGE_SEQ = #{messageSeq}
+		AND BM.BOARD_SEQ = #{boardSeq}
+		AND BM.STATUS_TYPE &gt; 0 <!-- 삭제안된건만 -->
+	</select>
+
+	<!-- 이전글 -->
+	<select id="getMessageViewPrev" resultMap="messageResult2">
+		SELECT InnerTable1.* FROM (
+		SELECT
+		BM.MESSAGE_SEQ,
+		BM.BOARD_SEQ,
+		BM.MESSAGE_CATEGORY_SEQ,
+		BMT.MESSAGE_CATEGORY_NAME,
+		BM.PARENT_MESSAGE_SEQ,
+		BM.MESSAGE_LEVEL,
+		BM.TAGS,
+
+		BM.TOP_FLAG,
+		BM.TITLE,
+		BM.SUB_TITLE,
+		BM.SUMMARY_CONTENTS,
+		BM.VIEW_COUNT,
+		BM.REPLY_COUNT,
+		BM.COMMENT_COUNT,
+
+		BM.ATTACHMENT_COUNT,
+		BM.SCRAP_COUNT,
+		BM.RECOMMEND_COUNT,
+		BM.THUMBNAIL_URL,
+		BM.HOME_URL,
+		BM.START_DATE,
+		BM.END_DATE,
+
+		BM.PROGRESS_STATUS,
+		BM.LICENSE_TYPE,
+		BM.LICENSE_POINT,
+		BM.CREATE_ID,
+		BM.CREATE_PWD,
+		BM.CREATE_NAME,
+		BM.CREATE_NICKNAME,
+		BM.CREATE_EMAIL,
+
+		BM.CREATE_IP,
+		BM.CREATE_DATE,
+		BM.UPDATE_ID,
+		BM.UPDATE_DATE,
+		BM.STATUS_TYPE,
+		BMC.CONTENTS
+		FROM PCP_BBS_MESSAGE BM
+		LEFT OUTER JOIN PCP_BBS_MESSAGE_CONTENTS BMC ON BMC.MESSAGE_SEQ =
+		BM.MESSAGE_SEQ
+		LEFT OUTER JOIN PCP_BBS_MESSAGE_CATEGORY BMT ON BMT.MESSAGE_CATEGORY_SEQ =
+		BM.MESSAGE_CATEGORY_SEQ
+		WHERE BM.MESSAGE_SEQ &lt; #{messageSeq}
+		AND BM.BOARD_SEQ = #{boardSeq}
+		AND BM.STATUS_TYPE &gt; 0 <!-- 삭제안된건만 -->
+		ORDER BY BM.MESSAGE_SEQ DESC
+
+		) InnerTable1 LIMIT 1
+	</select>
+
+	<!-- 다음글 -->
+	<select id="getMessageViewNext" resultMap="messageResult2">
+		SELECT InnerTable1.* FROM (
+		SELECT
+		BM.MESSAGE_SEQ,
+		BM.BOARD_SEQ,
+		BM.MESSAGE_CATEGORY_SEQ,
+		BMT.MESSAGE_CATEGORY_NAME,
+		BM.PARENT_MESSAGE_SEQ,
+		BM.MESSAGE_LEVEL,
+		BM.TAGS,
+
+		BM.TOP_FLAG,
+		BM.TITLE,
+		BM.SUB_TITLE,
+		BM.SUMMARY_CONTENTS,
+		BM.VIEW_COUNT,
+		BM.REPLY_COUNT,
+		BM.COMMENT_COUNT,
+
+		BM.ATTACHMENT_COUNT,
+		BM.SCRAP_COUNT,
+		BM.RECOMMEND_COUNT,
+		BM.THUMBNAIL_URL,
+		BM.HOME_URL,
+		BM.START_DATE,
+		BM.END_DATE,
+
+		BM.PROGRESS_STATUS,
+		BM.LICENSE_TYPE,
+		BM.LICENSE_POINT,
+		BM.CREATE_ID,
+		BM.CREATE_PWD,
+		BM.CREATE_NAME,
+		BM.CREATE_NICKNAME,
+		BM.CREATE_EMAIL,
+
+		BM.CREATE_IP,
+		BM.CREATE_DATE,
+		BM.UPDATE_ID,
+		BM.UPDATE_DATE,
+		BM.STATUS_TYPE,
+		BMC.CONTENTS
+		FROM PCP_BBS_MESSAGE BM
+		LEFT OUTER JOIN PCP_BBS_MESSAGE_CONTENTS BMC ON BMC.MESSAGE_SEQ =
+		BM.MESSAGE_SEQ
+		LEFT OUTER JOIN PCP_BBS_MESSAGE_CATEGORY BMT ON BMT.MESSAGE_CATEGORY_SEQ =
+		BM.MESSAGE_CATEGORY_SEQ
+		WHERE BM.MESSAGE_SEQ &gt; #{messageSeq}
+		AND BM.BOARD_SEQ = #{boardSeq}
+		AND BM.STATUS_TYPE &gt; 0 <!-- 삭제안된건만 -->
+		ORDER BY BM.MESSAGE_SEQ ASC
+		) InnerTable1 Limit 1
+	</select>
+
+	<!-- 이전글 -->
+	<select id="getMessagePrev" resultMap="messageMainResult">
+		/* getMessagePrev */
+		SELECT BM.MESSAGE_SEQ
+		,BM.TITLE
+		,BM.SORT_TREE
+		<include refid="getListWhere" />
+		AND BM.SORT_TREE &lt; #{sortTree}
+		ORDER BY BM.SORT_TREE DESC
+		LIMIT 1
+	</select>
+
+	<!-- 다음글 -->
+	<select id="getMessageNext" resultMap="messageMainResult">
+		/* getMessageNext */
+		SELECT BM.MESSAGE_SEQ
+		,BM.TITLE
+		,BM.SORT_TREE
+		<include refid="getListWhere" />
+		AND BM.SORT_TREE &gt; #{sortTree}
+		ORDER BY BM.SORT_TREE ASC
+		LIMIT 1
+	</select>
+
+	<!-- 사용후기 별점수 등록 갯수 -->
+	<select id="getRecommendTotalCount" resultType="java.lang.Integer">
+		SELECT COUNT(VAR_FILED2) totalCount
+		FROM PCP_BBS_MESSAGE
+		WHERE BOARD_SEQ
+		= #{boardSeq}
+		AND VAR_FILED1 = #{varFiled1}
+		AND STATUS_TYPE &gt; 0 <!-- 삭제안된건만 -->
+		AND CREATE_DATE > date_add(now(),interval -1 year)
+	</select>
+
+	<!-- 사용후기 별점수 합계 -->
+	<select id="getRecommendTotalSum" resultType="java.lang.Integer">
+		SELECT IFNULL(SUM(IFNULL(VAR_FILED2,0)),0) totalSum
+		FROM
+		PCP_BBS_MESSAGE
+		WHERE BOARD_SEQ = #{boardSeq}
+		AND VAR_FILED1 = #{varFiled1}
+		AND STATUS_TYPE &gt; 0 <!-- 삭제안된건만 -->
+		AND CREATE_DATE > date_add(now(),interval -1 year)
+	</select>
+
+	<!-- 조회:목록 -->
+	<!-- <select id="getMessageStat" resultType="com.pama.bbs.vo.MessageStatVO"
+		parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageSearchVO"> SELECT
+		ROWNUM as messageRank, messageCount FROM( SELECT (@RNUM := @RNUM +1) AS ROWNUM,
+		SRCHTABLE.* FROM (SELECT @RNUM :=0 ) R, ( SELECT CREATE_ID, count(CREATE_ID)
+		AS messageCount FROM PCP_BBS_MESSAGE WHERE BOARD_SEQ IN ('25','26','29','30','31')
+		AND STATUS_TYPE &gt; 0 GROUP BY CREATE_ID ORDER BY messageCount DESC ) SRCHTABLE
+		) SRCHTABLE WHERE CREATE_ID = #{createId} </select> <select id="getMessageAttachmentStat"
+		resultType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageStatVO" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageSearchVO">
+		SELECT ROWNUM as attachDownloadRank, attachDownloadCount FROM( SELECT (@RNUM
+		:= @RNUM +1) AS ROWNUM, SRCHTABLE.* FROM (SELECT @RNUM :=0 ) R, ( SELECT
+		BM.CREATE_ID, SUM(BMA.DOWNLOAD_COUNT) AS attachDownloadCount FROM PCP_BBS_MESSAGE_ATTACHMENT
+		BMA INNER JOIN PCP_BBS_MESSAGE BM ON BM.MESSAGE_SEQ = BMA.MESSAGE_SEQ WHERE
+		BOARD_SEQ IN ('25','26','29','30','31') GROUP BY CREATE_ID ORDER BY attachDownloadCount
+		DESC ) SRCHTABLE ) SRCHTABLE WHERE CREATE_ID = #{createId} </select> -->
+	<resultMap id="messageContentsVOResult" type="com.mycompany.myapp.shopcomponent.bbs.vo.MessageVO">
+		<id property="messageSeq" column="MESSAGE_SEQ" />
+		<result property="contents" column="CONTENTS" />
+	</resultMap>
+	<select id="getMessageContents" resultMap="messageContentsVOResult">
+		SELECT
+		MESSAGE_SEQ,
+		CONTENTS
+		FROM PCP_BBS_MESSAGE_CONTENTS
+		WHERE MESSAGE_SEQ = #{messageSeq}
+	</select>
+
+	<insert id="insertMessage" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageFormVO" useGeneratedKeys="true" keyProperty="messageSeq">
+		INSERT INTO PCP_BBS_MESSAGE (
+		BOARD_SEQ,
+		MESSAGE_CATEGORY_SEQ,
+		PARENT_MESSAGE_SEQ,
+		TAGS,
+		TOP_FLAG,
+		TITLE,
+		SUB_TITLE,
+		SUMMARY_CONTENTS,
+		VIEW_COUNT,
+		REPLY_COUNT,
+		COMMENT_COUNT,
+		ATTACHMENT_COUNT,
+		SCRAP_COUNT,
+		RECOMMEND_COUNT,
+		RECOMMEND_POINT,
+		THUMBNAIL_URL,
+		HOME_URL,
+		START_DATE,
+		END_DATE,
+		PROGRESS_STATUS,
+		LICENSE_TYPE,
+		LICENSE_POINT,
+		CREATE_ID,
+		CREATE_PWD,
+		CREATE_NAME,
+		CREATE_NICKNAME,
+		CREATE_EMAIL,
+		CREATE_IP,
+		CREATE_DATE,
+		STATUS_TYPE,
+		VAR_FILED1,
+		VAR_FILED2,
+		VAR_FILED3,
+		VAR_FILED4,
+		VAR_FILED5,
+		VAR_FILED6,
+		VAR_FILED7,
+		VAR_FILED8,
+		VAR_FILED9,
+		VAR_FILED10,
+		VAR_FILEDS
+		) VALUES (
+		#{boardSeq},
+		#{messageCategorySeq},
+		#{parentMessageSeq},
+		#{tags},
+		#{topFlag},
+		#{title},
+		#{subTitle},
+		#{summaryContents},
+		0,
+		0,
+		0,
+		#{attachmentCount},
+		0,
+		0,
+		0,
+		#{thumbnailUrl},
+		#{homeUrl},
+		#{startDate},
+		#{endDate},
+		#{progressStatus},
+		#{licenseType},
+		#{licensePoint},
+		#{createId},
+		#{createPwd},
+		#{createName},
+		#{createNickname},
+		#{createEmail},
+		#{createIp},
+		NOW(),
+		#{statusType},
+		#{varFiled1},
+		#{varFiled2},
+		#{varFiled3},
+		#{varFiled4},
+		#{varFiled5},
+		#{varFiled6},
+		#{varFiled7},
+		#{varFiled8},
+		#{varFiled9},
+		#{varFiled10},
+		#{varFileds}
+		)
+		<selectKey keyProperty="messageSeq" resultType="java.lang.String"
+			order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+
+	<insert id="insertMessageContents" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageFormVO">
+		INSERT INTO PCP_BBS_MESSAGE_CONTENTS (
+		MESSAGE_SEQ,
+		CONTENTS
+		) VALUES (
+		#{messageSeq},
+		#{contents}
+		)
+	</insert>
+
+	<update id="updateMessage" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageVO">
+		UPDATE PCP_BBS_MESSAGE SET
+		TITLE = #{title},
+		MESSAGE_CATEGORY_SEQ = #{messageCategorySeq},
+		TOP_FLAG = #{topFlag},
+		TAGS = #{tags},
+		SUB_TITLE = #{subTitle},
+		SUMMARY_CONTENTS = #{summaryContents},
+		THUMBNAIL_URL = #{thumbnailUrl},
+		HOME_URL = #{homeUrl},
+		START_DATE = #{startDate},
+		END_DATE = #{endDate},
+		LICENSE_TYPE = #{licenseType},
+		LICENSE_POINT = #{licensePoint},
+		PROGRESS_STATUS = #{progressStatus},
+
+		<if test="statusType != null and statusType!=''">
+			STATUS_TYPE = #{statusType},
+		</if>
+
+		<if test="varFiled1 != null and varFiled1 != ''">
+			VAR_FILED1 = #{varFiled1},
+		</if>
+		<if test="varFiled2 != null and varFiled2 != ''">
+			VAR_FILED2 = #{varFiled2},
+		</if>
+		<if test="varFiled3 != null and varFiled3 != ''">
+			VAR_FILED3 = #{varFiled3},
+		</if>
+		<if test="varFiled4 != null and varFiled4 != ''">
+			VAR_FILED4 = #{varFiled4},
+		</if>
+		<if test="varFiled5 != null and varFiled5 != ''">
+			VAR_FILED5 = #{varFiled5},
+		</if>
+		<if test="varFiled6 != null and varFiled6 != ''">
+			VAR_FILED6 = #{varFiled6},
+		</if>
+		<if test="varFiled7 != null and varFiled7 != ''">
+			VAR_FILED7 = #{varFiled7},
+		</if>
+		<if test="varFiled8 != null and varFiled8 != ''">
+			VAR_FILED8 = #{varFiled8},
+		</if>
+		<if test="varFiled9 != null and varFiled9 != ''">
+			VAR_FILED9 = #{varFiled9},
+		</if>
+		<if test="varFiled10 != null and varFiled10 != ''">
+			VAR_FILED10 = #{varFiled10},
+		</if>
+
+		<if test="varFileds != null and varFileds != ''">
+			VAR_FILEDS = #{varFileds},
+		</if>
+		<if test="mbSosok != null and mbSosok != ''">
+			MB_SOSOK = #{mbSosok},
+		</if>
+
+		UPDATE_ID = #{updateId},
+		UPDATE_IP = #{updateIp},
+		UPDATE_DATE = NOW()
+
+		WHERE MESSAGE_SEQ = #{messageSeq}
+	</update>
+
+	<update id="updateMessageSortTree" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageFormVO">
+		UPDATE PCP_BBS_MESSAGE SET
+		MESSAGE_LEVEL = #{messageLevel},
+		SORT_TREE = #{sortTree},
+		UPDATE_ID = #{updateId},
+		UPDATE_IP = #{updateIp},
+		UPDATE_DATE = NOW()
+		WHERE MESSAGE_SEQ = #{messageSeq}
+	</update>
+
+	<update id="updateMessageContents" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageVO">
+		UPDATE PCP_BBS_MESSAGE_CONTENTS SET
+		CONTENTS = #{contents}
+		WHERE MESSAGE_SEQ = #{messageSeq}
+	</update>
+
+	<update id="updateMessageProgressStatus" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageVO">
+		UPDATE PCP_BBS_MESSAGE SET
+		PROGRESS_STATUS = #{progressStatus}
+		WHERE MESSAGE_SEQ = #{messageSeq}
+	</update>
+
+	<update id="updateMessageAddViewCount" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageFormVO">
+		UPDATE PCP_BBS_MESSAGE SET
+		VIEW_COUNT = IFNULL(VIEW_COUNT,0)+1
+		WHERE MESSAGE_SEQ = #{messageSeq}
+		<if test="createId != null and createId != ''">
+			AND CREATE_ID &lt;&gt; #{createId}
+		</if>
+	</update>
+
+	<update id="updateMessageAddReplyCount" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageFormVO">
+		UPDATE PCP_BBS_MESSAGE SET
+		REPLY_COUNT = IFNULL(REPLY_COUNT,0)+1
+		WHERE MESSAGE_SEQ = #{parentMessageSeq}
+		<if test="createId != null and createId != ''">
+			AND CREATE_ID &lt;&gt; #{createId}
+		</if>
+	</update>
+
+
+	<update id="updateMessageAddCommentCount" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageFormVO">
+		UPDATE PCP_BBS_MESSAGE BM SET
+		COMMENT_COUNT = (SELECT COUNT(*) FROM PCP_BBS_MESSAGE_COMMENT WHERE MESSAGE_SEQ =
+		#{messageSeq})
+		WHERE BM.MESSAGE_SEQ = #{messageSeq}
+	</update>
+
+	<update id="updateMessageRemove" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageVO">
+		UPDATE PCP_BBS_MESSAGE SET
+		STATUS_TYPE = 0,
+		UPDATE_DATE = NOW(),
+		UPDATE_ID = #{updateId},
+		UPDATE_IP = #{updateIp}
+		WHERE MESSAGE_SEQ = #{messageSeq}
+	</update>
+	<update id="updateVarFiled1" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageVO">
+		UPDATE PCP_BBS_MESSAGE SET
+		VAR_FILED1 = #{varFiled1}
+		WHERE MESSAGE_SEQ = #{messageSeq}
+	</update>
+
+	<update id="updateMessageTagsRemove" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageVO">
+		UPDATE PCP_BBS_MESSAGE SET
+		TAGS = #{tags},
+		UPDATE_ID = #{updateId},
+		UPDATE_IP = #{updateIp},
+		UPDATE_DATE = NOW()
+		WHERE MESSAGE_SEQ = #{messageSeq}
+	</update>
+
+	<update id="updateSelectMessageRemove" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageFormVO">
+		UPDATE PCP_BBS_MESSAGE SET
+		UPDATE_DATE = NOW(),
+		UPDATE_ID = #{updateId},
+		UPDATE_IP = #{updateIp},
+		STATUS_TYPE = '0'
+		<trim prefix="WHERE">
+			1=1
+			<choose>
+				<when test="checkedIds != null">
+					AND MESSAGE_SEQ IN
+					<foreach item="checkedIds" collection="checkedIds" open="("
+						separator="," close=")">
+						#{checkedIds}
+					</foreach>
+				</when>
+				<otherwise>
+					AND MESSAGE_SEQ = 0
+				</otherwise>
+			</choose>
+		</trim>
+	</update>
+
+	<delete id="deleteMessage" parameterType="java.lang.String">
+		DELETE FROM PCP_BBS_MESSAGE WHERE MESSAGE_SEQ = #{messageSeq}
+	</delete>
+
+	<delete id="deleteMessageContents" parameterType="java.lang.String">
+		DELETE FROM PCP_BBS_MESSAGE_CONTENTS WHERE MESSAGE_SEQ = #{messageSeq}
+	</delete>
+
+	<delete id="deleteSelectMessage" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageFormVO">
+		DELETE FROM PCP_BBS_MESSAGE
+		<trim prefix="WHERE">
+			1=1
+			<choose>
+				<when test="checkedIds != null">
+					AND MESSAGE_SEQ IN
+					<foreach item="checkedIds" collection="checkedIds" open="("
+						separator="," close=")">
+						#{checkedIds}
+					</foreach>
+				</when>
+				<otherwise>
+					AND MESSAGE_SEQ = 0
+				</otherwise>
+			</choose>
+		</trim>
+	</delete>
+
+	<delete id="deleteSelectMessageContents" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageFormVO">
+		DELETE FROM PCP_BBS_MESSAGE_CONTENTS
+		<trim prefix="WHERE">
+			1=1
+			<choose>
+				<when test="checkedIds != null">
+					AND MESSAGE_SEQ IN
+					<foreach item="checkedIds" collection="checkedIds" open="("
+						separator="," close=")">
+						#{checkedIds}
+					</foreach>
+				</when>
+				<otherwise>
+					AND MESSAGE_SEQ = 0
+				</otherwise>
+			</choose>
+		</trim>
+	</delete>
+
+
+	<select id="getMessageListRecent4" resultMap="messageResult">
+	/** getMessageListRecent4 */
+		select
+			title,sub_title,message_seq,sort_tree,
+			create_date,
+			<![CDATA[
+		    case when TIMESTAMPDIFF(HOUR ,create_date,now()) < 24
+		    	then concat(TIMESTAMPDIFF(HOUR ,create_date,now()),' 시간전')
+		    when TIMESTAMPDIFF(HOUR ,create_date,now()) > 168
+		    	then DATE_FORMAT(create_date,'%M %d, %Y')
+		    else
+		    	concat(datediff(now(),create_date), ' 일전')
+		    end as create_date_diff
+		    ]]>
+		from
+			pcp_bbs_message
+		where
+			STATUS_TYPE ='1'
+		order by
+			create_date desc
+		limit 4
+	</select>
+
+	<select id="getMessageSubTitleCnt" resultMap="messageResult">
+	/** getMessageSubTitleCnt */
+		select
+			sub_title,count(sub_title) as sub_title_cnt
+		from
+			pcp_bbs_message
+		where
+			STATUS_TYPE ='1'
+		group by
+			sub_title
+		order by
+			count(sub_title) desc
+	</select>
+
+</mapper>

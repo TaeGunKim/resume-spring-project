@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mycompany.myapp.shopcomponent.bbs.dao.BoardGroupDAO">
+
+	<!-- resultMap은 항상 조회위 위치 -->
+    <resultMap id="boardGroupResult" type="com.mycompany.myapp.shopcomponent.bbs.vo.BoardGroupVO">
+    	<id property="boardGroupSeq" column="BOARD_GROUP_SEQ"/>
+    	<result property="boardGroupId" column="BOARD_GROUP_ID"/>
+    	<result property="boardGroupName" column="BOARD_GROUP_NAME"/>
+    	<result property="createDate" column="CREATE_DATE"/>
+        <result property="createId" column="CREATE_ID"/>
+        <result property="createIp" column="CREATE_IP"/>
+        <result property="statusType" column="STATUS_TYPE"/>
+        <result property="boardCount" column="BOARD_COUNT"/>
+    </resultMap>
+
+        <!-- 목록에 대한 검색조건은 같은걸로 사용 -->
+    <sql id="getListWhere">
+
+        <trim prefix="WHERE" >
+
+        	BBG.BOARD_GROUP_SEQ &gt; 0
+
+	        <choose>
+	        	<when test="statusType == null">
+	        		AND BBG.STATUS_TYPE in ('1','2')
+	        	</when>
+	        	<otherwise>
+	        		AND BBG.STATUS_TYPE = #{statusType}
+	        	</otherwise>
+	        </choose>
+
+	        <!-- select box로 검색할경우 -->
+	        <if test="searchValue != null">
+	        	<if test="searchColumn == 'title'">
+	        		AND INSTR(LOWER(BBG.BOARD_GROUP_NAME),LOWER(#{searchValue})) &gt; 0
+	        	</if>
+	        </if>
+
+		</trim>
+
+    </sql>
+
+    <!-- 조회:목록전체갯수 -->
+    <select id="getListTotalCount" resultType="java.lang.Integer">
+        SELECT COUNT(BBG.BOARD_GROUP_SEQ) AS TOTAL_COUNT
+        FROM PCP_BBS_BOARD_GROUP BBG
+        <include refid="getListWhere"/>
+    </select>
+
+	<!-- 조회:목록 -->
+    <select id="getBoardGroupList" resultMap="boardGroupResult">
+		SELECT
+			BBG.BOARD_GROUP_SEQ,
+			BBG.BOARD_GROUP_ID,
+			BBG.BOARD_GROUP_NAME,
+			BBG.CREATE_ID,
+			BBG.CREATE_IP,
+			BBG.CREATE_DATE,
+			BBG.STATUS_TYPE,
+			COUNT(BB.BOARD_ID) BOARD_COUNT
+		FROM PCP_BBS_BOARD_GROUP BBG
+			LEFT OUTER JOIN PCP_BBS_BOARD BB ON BBG.BOARD_GROUP_SEQ = BB.BOARD_GROUP_SEQ
+		<include refid="getListWhere"/>
+		GROUP BY
+			BBG.BOARD_GROUP_SEQ,
+			BBG.BOARD_GROUP_ID,
+			BBG.BOARD_GROUP_NAME,
+			BBG.CREATE_ID,
+			BBG.CREATE_IP,
+			BBG.CREATE_DATE,
+			BBG.STATUS_TYPE
+    </select>
+
+    <!-- 조회:상세 -->
+    <select id="getBoardGroup" resultMap="boardGroupResult">
+        SELECT
+        	BOARD_GROUP_SEQ,
+        	BOARD_GROUP_ID,
+			BOARD_GROUP_NAME,
+			CREATE_ID,
+			CREATE_IP,
+			CREATE_DATE,
+			STATUS_TYPE
+		FROM PCP_BBS_BOARD_GROUP
+		<where>
+       		STATUS_TYPE in ('1','2')
+
+	        <choose>
+	        	<when test="boardGroupId != null">
+	        		and BOARD_GROUP_ID = #{boardGroupId}
+	        	</when>
+	        	<when test="boardGroupSeq != null">
+	        		and BOARD_GROUP_SEQ = #{boardGroupSeq}
+	        	</when>
+	        	<otherwise>
+	        		and BOARD_GROUP_ID = ''
+	        	</otherwise>
+	        </choose>
+
+       	</where>
+    </select>
+
+    <!-- 조회:BOARD_GROUP_ID 체크 -->
+    <select id="getCheckBoardGroupId" resultType="java.lang.Integer">
+        /* getCheckBoardGroupId */
+        SELECT COUNT(*) AS CNT
+		  FROM PCP_BBS_BOARD_GROUP
+		 WHERE BOARD_GROUP_ID = #{boardGroupId}
+    </select>
+
+    <!-- 조회:등록 -->
+    <insert id="insertBoardGroup" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.BoardGroupVO" useGeneratedKeys="true" keyProperty="messageSeq">
+        INSERT INTO PCP_BBS_BOARD_GROUP (
+        	BOARD_GROUP_ID,
+			BOARD_GROUP_NAME,
+			CREATE_DATE,
+			CREATE_ID,
+			CREATE_IP,
+			UPDATE_DATE,
+			UPDATE_ID,
+			UPDATE_IP,
+			STATUS_TYPE
+        ) VALUES (
+        	#{boardGroupId},
+        	#{boardGroupName},
+        	NOW(),
+            #{createId},
+            #{createIp},
+            NOW(),
+            #{updateId},
+            #{updateIp},
+            #{statusType}
+        )
+        <selectKey keyProperty="boardGroupSeq" resultType="java.lang.Integer" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <!-- 조회:수정 -->
+    <update id="updateBoardGroup" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.BoardGroupVO">
+		UPDATE PCP_BBS_BOARD_GROUP SET
+			BOARD_GROUP_ID		= #{boardGroupId},
+			BOARD_GROUP_NAME	= #{boardGroupName},
+			UPDATE_DATE			= NOW(),
+			UPDATE_ID			= #{updateId},
+			UPDATE_IP			= #{updateIp},
+			STATUS_TYPE			= #{statusType}
+		WHERE BOARD_GROUP_SEQ = #{boardGroupSeq}
+		  and STATUS_TYPE in ('1','2')
+	</update>
+
+	<!-- 조회:상태변경 -->
+	<update id="updateBoardStatus" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.BoardGroupVO">
+		UPDATE PCP_BBS_BOARD_GROUP SET
+         	STATUS_TYPE		= 0,
+        	UPDATE_ID		= #{updateId},
+         	UPDATE_DATE		= NOW(),
+         	UPDATE_IP		= #{updateIp}
+		WHERE BOARD_GROUP_SEQ = #{boardGroupSeq}
+    </update>
+
+</mapper>

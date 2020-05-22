@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mycompany.myapp.shopcomponent.about.dao.AboutDAO">
+
+
+	<resultMap id="aboutResult" type="com.mycompany.myapp.shopcomponent.about.vo.AboutVO">
+    	<result property="name"			column="name"			/>
+    	<result property="job"			column="job"			/>
+    	<result property="intro"		column="intro"			/>
+    	<result property="birth"		column="birth"			/>
+    	<result property="mtel"			column="mtel"			/>
+    	<result property="email"		column="email"			/>
+    	<result property="residence"	column="residence"		/>
+    	<result property="sns1"			column="sns1"			/>
+    	<result property="sns2"			column="sns2"			/>
+    	<result property="about"		column="about"			/>
+    	<result property="create_date"	column="create_date"	/>
+    </resultMap>
+
+	<select id="getAbout" resultMap="aboutResult">
+	/** getAbout */
+		select
+			name,
+		    job,
+		    intro,
+		    birth,
+		    mtel,
+		    email,
+		    residence,
+		    sns1,
+		    sns2,
+		    about,
+		    create_date
+		from
+			tbl_about
+		where
+			1=1
+			and del_yn ='N'
+		order by
+			create_date desc
+		limit 1
+	</select>
+</mapper>

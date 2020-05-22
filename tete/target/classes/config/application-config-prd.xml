@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+
+<properties>
+    <comment>Configuration</comment>
+
+    <entry key="resource.view.suffix">.jsp</entry>
+
+    <entry key="shop.database.driver">com.mysql.jdbc.Driver</entry>
+    <entry key="shop.database.url">jdbc:mysql://localhost/kimtgbase</entry>
+    <entry key="shop.database.user">root</entry>
+    <entry key="shop.database.password">MTIzNA==</entry>
+    <!--  base64로 password 포맷 복호화함, MvcConfigurer getExposablePropertyPlaceholderConfigurer -->
+
+	<!--
+    <entry key="shop.database.url">jdbc:mysql://prd-shopping-db/shopping</entry>
+    <entry key="shop.database.user">minwoo</entry>
+    <entry key="shop.database.password">cWxhbGZxanNnaCEk</entry>
+    -->
+
+    <entry key="shop.database.pool.min.size">25</entry>
+    <entry key="shop.database.pool.max.size">50</entry>
+
+    <!-- Attachment Config -->
+    <entry key="upload.path">/usr/local/tomcat/upload</entry>
+    <entry key="upload.file.type">jpg|gif|png|bmp|doc|pdf|ppt|txt|xls|zip</entry>
+
+    <!-- server info -->
+	<entry key="server.prod.images.domain">http://shopping.happycoop.or.kr</entry>
+
+</properties>

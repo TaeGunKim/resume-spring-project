@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mycompany.myapp.shopcomponent.bbs.dao.BoardManagerDAO">
+
+    <!-- 목록에 대한 검색조건은 같은걸로 사용 -->
+    <sql id="getListWhere">
+
+        <trim prefix="WHERE" >
+
+        	BOARD_SEQ &gt; 0
+
+	        <choose>
+	        	<when test="statusType == null">
+	        		AND STATUS_TYPE in ('1','2')
+	        	</when>
+	        	<otherwise>
+	        		AND STATUS_TYPE = #{statusType}
+	        	</otherwise>
+	        </choose>
+
+	        <!-- select box로 검색할경우 -->
+	        <if test="searchValue != null">
+	        	<if test="searchColumn == 'title'">
+	        		AND INSTR(LOWER(TITLE),LOWER(#{searchValue})) &gt; 0
+	        	</if>
+	        </if>
+
+		</trim>
+
+    </sql>
+
+    <!-- 조회:목록전체갯수 -->
+    <select id="getListTotalCount" resultType="java.lang.Integer" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.BoardSearchVO">
+        SELECT COUNT(*) AS TOTAL_COUNT
+        FROM PCP_BBS_BOARD
+        <include refid="getListWhere"/>
+    </select>
+
+    <!-- resultMap은 항상 조회위 위치 -->
+    <resultMap id="boardResult" type="com.mycompany.myapp.shopcomponent.bbs.vo.BoardVO">
+     	<id property="boardSeq" column="BOARD_SEQ"/>
+     	<result property="boardGroupSeq" column="BOARD_GROUP_SEQ"/>
+     	<result property="boardGroupName" column="BOARD_GROUP_NAME"/>
+     	<result property="boardId" column="BOARD_ID"/>
+        <result property="boardType" column="BOARD_TYPE"/>
+        <result property="title" column="TITLE"/>
+        <result property="description" column="DESCRIPTION"/>
+        <result property="listLines" column="LIST_LINES"/>
+        <result property="listLinesAdmin" column="LIST_LINES_ADMIN"/>
+    	<result property="messageCategoryFlag" column="MESSAGE_CATEGORY_FLAG"/>
+        <result property="consultFlag" column="CONSULT_FLAG"/>
+        <result property="replyFlag" column="REPLY_FLAG"/>
+        <result property="commentFlag" column="COMMENT_FLAG"/>
+        <result property="attachmentFlag" column="ATTACHMENT_FLAG"/>
+        <result property="attachmentCount" column="ATTACHMENT_COUNT"/>
+        <result property="recommendFlag" column="RECOMMEND_FLAG"/>
+        <result property="listImageFlag" column="LIST_IMAGE_FLAG"/>
+        <result property="topMessageFlag" column="TOP_MESSAGE_FLAG"/>
+        <result property="tagsFlag" column="TAGS_FLAG"/>
+        <result property="expirationFlag" column="EXPIRATION_FLAG"/>
+        <result property="summaryFlag" column="SUMMARY_FLAG"/>
+        <result property="contentsFlag" column="CONTENTS_FLAG"/>
+        <result property="secretFlag" column="SECRET_FLAG"/>
+        <result property="nextPrevFlag" column="NEXT_PREV_FLAG"/>
+        <result property="pointUseFlag" column="POINT_USE_FLAG"/>
+        <result property="authAccess" column="AUTH_ACCESS"/>
+        <result property="authList" column="AUTH_LIST"/>
+        <result property="authView" column="AUTH_VIEW"/>
+        <result property="authWrite" column="AUTH_WRITE"/>
+        <result property="authManager" column="AUTH_MANAGER"/>
+        <result property="createDate" column="CREATE_DATE"/>
+        <result property="createId" column="CREATE_ID"/>
+        <result property="statusType" column="STATUS_TYPE"/>
+    </resultMap>
+    <!-- 조회:목록 -->
+    <select id="getBoardList" resultMap="boardResult" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.BoardSearchVO">
+				SELECT
+					BOARD_SEQ,
+					BOARD_GROUP_SEQ,
+					BOARD_ID,
+					BOARD_TYPE,
+					TITLE,
+					DESCRIPTION,
+					LIST_LINES,
+					LIST_LINES_ADMIN,
+					MESSAGE_CATEGORY_FLAG,
+					CONSULT_FLAG,
+					REPLY_FLAG,
+					COMMENT_FLAG,
+					ATTACHMENT_FLAG,
+					ATTACHMENT_COUNT,
+					RECOMMEND_FLAG,
+					LIST_IMAGE_FLAG,
+					TOP_MESSAGE_FLAG,
+					TAGS_FLAG,
+					EXPIRATION_FLAG,
+					SUMMARY_FLAG,
+					CONTENTS_FLAG,
+					SECRET_FLAG,
+					NEXT_PREV_FLAG,
+					POINT_USE_FLAG,
+					AUTH_ACCESS,
+					AUTH_LIST,
+					AUTH_VIEW,
+					AUTH_WRITE,
+					AUTH_MANAGER,
+					CREATE_ID,
+					CREATE_DATE,
+					STATUS_TYPE
+				FROM PCP_BBS_BOARD
+        		<include refid="getListWhere"/>
+		        <!-- Sorting -->
+	        	<if test="sortColumn == 'title'">
+	        	    ORDER BY TITLE ${sortValue}
+	        	</if>
+	        	<!-- LIMIT #{startIndex}, #{row} -->
+    </select>
+
+    <select id="getBoard" resultMap="boardResult">
+        SELECT
+        	A.BOARD_SEQ,
+        	A.BOARD_GROUP_SEQ,
+        	B.BOARD_GROUP_NAME,
+			A.BOARD_ID,
+			A.BOARD_TYPE,
+			A.TITLE,
+			A.DESCRIPTION,
+			A.LIST_LINES,
+			A.LIST_LINES_ADMIN,
+			A.MESSAGE_CATEGORY_FLAG,
+			A.CONSULT_FLAG,
+			A.REPLY_FLAG,
+			A.COMMENT_FLAG,
+			A.ATTACHMENT_FLAG,
+			A.ATTACHMENT_COUNT,
+			A.RECOMMEND_FLAG,
+			A.LIST_IMAGE_FLAG,
+			A.TOP_MESSAGE_FLAG,
+			A.TAGS_FLAG,
+			A.EXPIRATION_FLAG,
+			A.SUMMARY_FLAG,
+			A.CONTENTS_FLAG,
+			A.SECRET_FLAG,
+			A.NEXT_PREV_FLAG,
+			A.POINT_USE_FLAG,
+			A.AUTH_ACCESS,
+			A.AUTH_LIST,
+			A.AUTH_VIEW,
+			A.AUTH_WRITE,
+			A.AUTH_MANAGER,
+			A.CREATE_ID,
+			A.CREATE_DATE,
+			A.STATUS_TYPE
+		FROM PCP_BBS_BOARD A
+		     LEFT JOIN PCP_BBS_BOARD_GROUP B
+		            ON B.BOARD_GROUP_SEQ = A.BOARD_GROUP_SEQ
+		<where>
+       		A.STATUS_TYPE in ('1','2')
+
+	        <choose>
+	        	<when test="boardSeq != null">
+	        		and A.BOARD_SEQ = #{boardSeq}
+	        	</when>
+	        	<when test="boardId != null">
+	        		and A.BOARD_ID = #{boardId}
+	        	</when>
+	        	<otherwise>
+	        		and A.BOARD_ID = ''
+	        	</otherwise>
+	        </choose>
+
+       	</where>
+
+    </select>
+
+    <!-- 조회:BOARD_ID 체크 -->
+    <select id="getCheckBoardId" resultType="java.lang.Integer">
+        /* getCheckBoardId */
+        SELECT COUNT(*) AS CNT
+          FROM PCP_BBS_BOARD
+         WHERE BOARD_ID = #{boardId}
+    </select>
+
+    <insert id="insertBoard" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.BoardVO" useGeneratedKeys="true" keyProperty="messageSeq">
+        INSERT INTO PCP_BBS_BOARD (
+			 BOARD_ID
+			,BOARD_GROUP_SEQ
+			,BOARD_TYPE
+			,TITLE
+			,DESCRIPTION
+			,LIST_LINES
+			,LIST_LINES_ADMIN
+			,MESSAGE_CATEGORY_FLAG
+			,CONSULT_FLAG
+			,REPLY_FLAG
+			,COMMENT_FLAG
+			,ATTACHMENT_FLAG
+			,ATTACHMENT_COUNT
+			,RECOMMEND_FLAG
+			,LIST_IMAGE_FLAG
+			,TOP_MESSAGE_FLAG
+			,TAGS_FLAG
+			,EXPIRATION_FLAG
+			,SUMMARY_FLAG
+			,CONTENTS_FLAG
+			,SECRET_FLAG
+			,NEXT_PREV_FLAG
+			,POINT_USE_FLAG
+			,AUTH_ACCESS
+			,AUTH_LIST
+			,AUTH_VIEW
+			,AUTH_WRITE
+			,AUTH_MANAGER
+			,CREATE_DATE
+			,CREATE_ID
+			,CREATE_IP
+			,UPDATE_DATE
+			,UPDATE_ID
+			,UPDATE_IP
+			,STATUS_TYPE
+        ) VALUES (
+             CAST( #{boardId} AS CHAR )
+            ,(SELECT BOARD_GROUP_SEQ FROM PCP_BBS_BOARD_GROUP WHERE BOARD_GROUP_ID = #{boardType})
+            ,#{boardType}
+            ,#{title}
+            ,#{description}
+            ,#{listLines}
+            ,#{listLinesAdmin}
+            ,IFNULL(#{messageCategoryFlag}, '0')
+            ,IFNULL(#{consultFlag}        , '0')
+            ,IFNULL(#{replyFlag}          , '0')
+            ,IFNULL(#{commentFlag}        , '0')
+            ,IFNULL(#{attachmentFlag}     , '0')
+            ,IFNULL(#{attachmentCount}    ,  0)
+            ,IFNULL(#{recommendFlag}      , '0')
+            ,IFNULL(#{listImageFlag}      , '0')
+            ,IFNULL(#{topMessageFlag}     , '0')
+            ,IFNULL(#{tagsFlag}           , '0')
+            ,IFNULL(#{expirationFlag}     , '0')
+            ,IFNULL(#{summaryFlag}        , '0')
+            ,IFNULL(#{contentsFlag}       , '0')
+            ,IFNULL(#{secretFlag}         , '0')
+            ,IFNULL(#{nextPrevFlag}       , '0')
+			,IFNULL(#{pointUseFlag}       , '0')
+            ,#{authAccess}
+            ,#{authList}
+            ,#{authView}
+            ,#{authWrite}
+            ,#{authManager}
+            ,NOW()
+            ,#{createId}
+            ,#{createIp}
+            ,NOW()
+            ,#{updateId}
+            ,#{updateIp}
+            ,'1'
+         )
+        <selectKey keyProperty="boardSeq" resultType="java.lang.Integer" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <update id="updateBoard" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.BoardVO">
+		UPDATE PCP_BBS_BOARD SET
+			BOARD_ID		  		= #{boardId},
+			BOARD_GROUP_SEQ			= (SELECT BOARD_GROUP_SEQ FROM PCP_BBS_BOARD_GROUP WHERE BOARD_GROUP_ID = #{boardType}),
+			BOARD_TYPE            	= #{boardType},
+			TITLE                 	= #{title},
+			DESCRIPTION           	= #{description},
+			LIST_LINES            	= #{listLines},
+			LIST_LINES_ADMIN       	= #{listLinesAdmin},
+			MESSAGE_CATEGORY_FLAG 	= #{messageCategoryFlag},
+			CONSULT_FLAG			= #{consultFlag},
+			REPLY_FLAG            	= #{replyFlag},
+			COMMENT_FLAG          	= #{commentFlag},
+			ATTACHMENT_FLAG      	= #{attachmentFlag},
+			ATTACHMENT_COUNT		= #{attachmentCount},
+			RECOMMEND_FLAG        	= #{recommendFlag},
+			LIST_IMAGE_FLAG       	= #{listImageFlag},
+			TOP_MESSAGE_FLAG      	= #{topMessageFlag},
+			TAGS_FLAG             	= #{tagsFlag},
+			EXPIRATION_FLAG			= #{expirationFlag},
+			SUMMARY_FLAG		  	= #{summaryFlag},
+			CONTENTS_FLAG 			= #{contentsFlag},
+			SECRET_FLAG				= #{secretFlag},
+			NEXT_PREV_FLAG			= #{nextPrevFlag},
+			POINT_USE_FLAG			= #{pointUseFlag},
+			AUTH_ACCESS			  	= #{authAccess},
+			AUTH_LIST			  	= #{authList},
+			AUTH_VIEW			  	= #{authView},
+			AUTH_WRITE			  	= #{authWrite},
+			AUTH_MANAGER		  	= #{authManager},
+			UPDATE_ID			  	= #{updateId},
+			UPDATE_DATE			  	= NOW(),
+			UPDATE_IP			  	= #{updateIp},
+			STATUS_TYPE           	= #{statusType}
+		WHERE BOARD_ID = #{boardId}
+		  and STATUS_TYPE in ('1','2')
+    </update>
+
+    <update id="updateBoardStatus" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.BoardVO">
+         UPDATE PCP_BBS_BOARD SET
+             STATUS_TYPE        = #{statusType},
+             UPDATE_ID			= #{updateId},
+             UPDATE_DATE		= NOW(),
+             UPDATE_IP			= #{updateIp}
+         WHERE BOARD_ID = #{boardId}
+    </update>
+
+</mapper>

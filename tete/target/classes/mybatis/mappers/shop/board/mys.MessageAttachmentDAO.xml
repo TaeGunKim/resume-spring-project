@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mycompany.myapp.shopcomponent.bbs.dao.MessageAttachmentDAO">
+
+    <sql id="whereMessageAttachmentList">
+
+        <trim prefix="WHERE">
+			MA.STATUS_TYPE='1'
+			AND M.BOARD_SEQ = #{boardSeq}
+        	<if test="messageSeq >= 1">
+        		AND MA.MESSAGE_SEQ = #{messageSeq}
+        	</if>
+
+        	<if test="fileTypes != null">
+        		AND MA.FILE_TYPE IN
+        		<foreach item="fileTypes" collection="fileTypes" open="(" separator="," close=")">
+        			#{fileTypes}
+        		</foreach>
+        	</if>
+
+	        <!-- select box로 검색할경우 -->
+	        <if test="searchValue != null">
+	        	<choose>
+	        		<when test="searchColumn == 'title'">
+	        			AND INSTR(LOWER(M.TITLE),LOWER(#{searchValue})) &gt; 0
+	        		</when>
+	        		<when test="searchColumn == 'displayName'">
+	        			AND INSTR(LOWER(MA.DISPLAY_NAME),LOWER(#{searchValue})) &gt; 0
+	        		</when>
+	        	</choose>
+	        </if>
+
+		</trim>
+
+    </sql>
+
+	<select id="getMessageAttachmentListTotalConut" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageAttachmentVO" resultType="long">
+		/** getMessageAttachmentListTotalConut */
+        SELECT
+           COUNT(1)
+        FROM PCP_BBS_MESSAGE_ATTACHMENT MA LEFT OUTER JOIN PCP_BBS_MESSAGE M ON MA.MESSAGE_SEQ = M.MESSAGE_SEQ
+        <include refid="whereMessageAttachmentList"/>
+    </select>
+
+    <resultMap id="getMessageAttachmentResult" type="com.mycompany.myapp.shopcomponent.bbs.vo.MessageAttachmentVO">
+        <result property="title" column="TITLE"/>
+        <result property="boardSeq" column="BOARD_SEQ"/>
+        <result property="messageCategorySeq" column="MESSAGE_CATEGORY_SEQ"/>
+        <result property="attachmentSeq" column="ATTACHMENT_SEQ"/>
+        <result property="messageSeq" column="MESSAGE_SEQ"/>
+        <result property="fileType" column="FILE_TYPE"/>
+        <result property="contentType"  column="CONTENT_TYPE"/>
+        <result property="fileName" column="FILE_NAME"/>
+        <result property="displayName" column="DISPLAY_NAME"/>
+        <result property="filePath" column="FILE_PATH"/>
+        <result property="fileSize" column="FILE_SIZE"/>
+        <result property="downloadCount" column="DOWNLOAD_COUNT"/>
+        <result property="registerDate" column="REGISTER_DATE"/>
+        <result property="imageWidth" column="IMAGE_WIDTH"/>
+        <result property="imageHeight" column="IMAGE_HEIGHT"/>
+        <result property="showIndex" column="SHOW_INDEX"/>
+    </resultMap>
+    <select id="getMessageAttachmentList" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageAttachmentVO" resultMap="getMessageAttachmentResult">
+    	/** getMessageAttachmentList */
+	   	SELECT
+	   		SrchTable1.*
+	   	FROM (
+	   		SELECT @RNUM := @RNUM +1 AS ROWNUM, SrchTable1.* FROM ( SELECT @RNUM :=0 )R,
+	   		(
+                SELECT
+                    M.TITLE,
+                    M.BOARD_SEQ,
+                    M.MESSAGE_CATEGORY_SEQ,
+
+                    MA.ATTACHMENT_SEQ,
+                    MA.MESSAGE_SEQ,
+                    MA.FILE_TYPE,
+                    MA.CONTENT_TYPE,
+                    MA.FILE_NAME,
+                    MA.DISPLAY_NAME,
+                    MA.FILE_PATH,
+                    MA.FILE_SIZE,
+                    MA.DOWNLOAD_COUNT,
+                    MA.REGISTER_DATE,
+                    MA.IMAGE_WIDTH,
+                    MA.IMAGE_HEIGHT
+                FROM PCP_BBS_MESSAGE_ATTACHMENT MA LEFT OUTER JOIN PCP_BBS_MESSAGE M ON MA.MESSAGE_SEQ = M.MESSAGE_SEQ
+                <include refid="whereMessageAttachmentList"/>
+		        <!-- Sorting -->
+		        <choose>
+		        	<when test="sortColumn == 'title'">
+		        		ORDER BY TITLE ${sortValue}
+		        	</when>
+		        	<when test="sortColumn == 'registerDate'">
+		        		ORDER BY REGISTER_DATE ${sortValue}
+		        	</when>
+		        </choose>
+
+        	) SrchTable1 LIMIT #{row}
+		) SrchTable2 WHERE ROWNUM &gt;= #{startIndex}
+    </select>
+
+    <!-- 파일갯수 -->
+    <select id="getMessageAttachmentCnt" parameterType="java.lang.String" resultType="int">
+    	/** getMessageAttachmentCnt */
+        SELECT
+            count(1) messageAttachmentCnt
+        FROM PCP_BBS_MESSAGE_ATTACHMENT
+        WHERE MESSAGE_SEQ = #{messageSeq}
+    </select>
+
+     <!-- 파일뷰 -->
+    <select id="getMessageAttachmentShowIndex" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageAttachmentSearchVO" resultMap="getMessageAttachmentResult">
+    	/** getMessageAttachmentShowIndex */
+        SELECT
+            MA.ATTACHMENT_SEQ,
+            MA.MESSAGE_SEQ,
+            MA.FILE_TYPE,
+            MA.CONTENT_TYPE,
+            MA.FILE_NAME,
+            MA.DISPLAY_NAME,
+            MA.FILE_PATH,
+            MA.FILE_SIZE,
+            MA.DOWNLOAD_COUNT,
+            MA.REGISTER_DATE,
+            MA.IMAGE_WIDTH,
+            MA.IMAGE_HEIGHT,
+            MA.SHOW_INDEX
+        FROM PCP_BBS_MESSAGE_ATTACHMENT MA
+        WHERE MA.MESSAGE_SEQ = #{messageSeq} AND MA.SHOW_INDEX = #{showIndex} AND MA.STATUS_TYPE='1'
+    </select>
+
+    <!-- 파일뷰 -->
+    <select id="getMessageAttachment" parameterType="java.lang.String" resultMap="getMessageAttachmentResult">
+    	/** getMessageAttachment */
+        SELECT
+            M.TITLE,
+            M.BOARD_SEQ,
+            M.MESSAGE_CATEGORY_SEQ,
+
+            MA.ATTACHMENT_SEQ,
+            MA.MESSAGE_SEQ,
+            MA.FILE_TYPE,
+            MA.CONTENT_TYPE,
+            MA.FILE_NAME,
+            MA.DISPLAY_NAME,
+            MA.FILE_PATH,
+            MA.FILE_SIZE,
+            MA.DOWNLOAD_COUNT,
+            MA.REGISTER_DATE,
+            MA.IMAGE_WIDTH,
+            MA.IMAGE_HEIGHT
+        FROM PCP_BBS_MESSAGE_ATTACHMENT MA LEFT OUTER JOIN PCP_BBS_MESSAGE M ON MA.MESSAGE_SEQ = M.MESSAGE_SEQ
+        WHERE MA.ATTACHMENT_SEQ = #{attachmentSeq} AND MA.STATUS_TYPE='1'
+    </select>
+
+    <select id="getIsMessageAttachment"  parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageAttachmentVO" resultType="java.lang.Integer">
+    	/** getIsMessageAttachment */
+        SELECT
+            count(*)
+        FROM PCP_BBS_MESSAGE_ATTACHMENT
+        WHERE MESSAGE_SEQ = #{messageSeq} and SHOW_INDEX = #{showIndex} and STATUS_TYPE = '1'
+    </select>
+
+    <!-- 파일뷰 -->
+    <select id="getMessageAttachmentFileName" parameterType="java.lang.String" resultMap="getMessageAttachmentResult">
+    	/** getMessageAttachmentFileName */
+        SELECT
+            MA.ATTACHMENT_SEQ,
+            MA.MESSAGE_SEQ,
+            MA.FILE_TYPE,
+            MA.CONTENT_TYPE,
+            MA.FILE_NAME,
+            MA.DISPLAY_NAME,
+            MA.FILE_PATH,
+            MA.FILE_SIZE,
+            MA.DOWNLOAD_COUNT,
+            MA.REGISTER_DATE,
+            MA.IMAGE_WIDTH,
+            MA.IMAGE_HEIGHT
+        FROM PCP_BBS_MESSAGE_ATTACHMENT MA
+        WHERE MA.FILE_NAME = #{fileName} AND MA.STATUS_TYPE='1'
+    </select>
+
+    <select id="updateAddMessageAttachmentDownload" parameterType="java.lang.String" >
+    	/** updateAddMessageAttachmentDownload */
+        UPDATE PCP_BBS_MESSAGE_ATTACHMENT SET
+            DOWNLOAD_COUNT = IFNULL(DOWNLOAD_COUNT,0) + 1
+        WHERE FILE_NAME = #{fileName}
+    </select>
+
+     <resultMap id="getMessageAttachmentResult2" type="com.mycompany.myapp.shopcomponent.bbs.vo.MessageAttachmentVO">
+        <result property="attachmentSeq" column="ATTACHMENT_SEQ"/>
+        <result property="messageSeq" column="MESSAGE_SEQ"/>
+        <result property="fileType" column="FILE_TYPE"/>
+        <result property="contentType"  column="CONTENT_TYPE"/>
+        <result property="fileName" column="FILE_NAME"/>
+        <result property="displayName" column="DISPLAY_NAME"/>
+        <result property="filePath" column="FILE_PATH"/>
+        <result property="fileSize" column="FILE_SIZE"/>
+        <result property="downloadCount" column="DOWNLOAD_COUNT"/>
+        <result property="imageWidth" column="IMAGE_WIDTH"/>
+        <result property="imageHeight" column="IMAGE_HEIGHT"/>
+        <result property="showIndex" column="SHOW_INDEX"/>
+    </resultMap>
+    <!-- 파일뷰 -->
+    <select id="getMessageAttachment2" parameterType="java.lang.String" resultMap="getMessageAttachmentResult2">
+    	/** getMessageAttachment2 */
+        SELECT
+            MA.ATTACHMENT_SEQ,
+            MA.MESSAGE_SEQ,
+            MA.FILE_TYPE,
+            MA.CONTENT_TYPE,
+            MA.FILE_NAME,
+            MA.DISPLAY_NAME,
+            MA.FILE_PATH,
+            MA.FILE_SIZE,
+            MA.DOWNLOAD_COUNT,
+            MA.IMAGE_WIDTH,
+            MA.IMAGE_HEIGHT
+        FROM PCP_BBS_MESSAGE_ATTACHMENT MA
+        WHERE MA.ATTACHMENT_SEQ = #{attachmentSeq} AND MA.STATUS_TYPE='1'
+    </select>
+
+    <select id="getMessageAttachments" parameterType="java.lang.String" resultMap="getMessageAttachmentResult2">
+    	/** getMessageAttachments */
+        SELECT
+            MA.ATTACHMENT_SEQ,
+            MA.MESSAGE_SEQ,
+            MA.FILE_TYPE,
+            MA.CONTENT_TYPE,
+            MA.FILE_NAME,
+            MA.DISPLAY_NAME,
+            MA.FILE_PATH,
+            MA.FILE_SIZE,
+            MA.DOWNLOAD_COUNT,
+            MA.IMAGE_WIDTH,
+            MA.IMAGE_HEIGHT,
+            MA.SHOW_INDEX
+        FROM PCP_BBS_MESSAGE_ATTACHMENT MA
+        WHERE MA.MESSAGE_SEQ = #{messageSeq} AND MA.STATUS_TYPE='1'
+        ORDER BY MA.SHOW_INDEX ASC, MA.ATTACHMENT_SEQ ASC
+    </select>
+
+    <select id="getMessageAttachmentLast" parameterType="java.lang.String" resultMap="getMessageAttachmentResult2">
+    	/** getMessageAttachmentLast */
+        SELECT
+            MA.ATTACHMENT_SEQ,
+            MA.MESSAGE_SEQ,
+            MA.FILE_TYPE,
+            MA.CONTENT_TYPE,
+            MA.FILE_NAME,
+            MA.DISPLAY_NAME,
+            MA.FILE_PATH,
+            MA.FILE_SIZE,
+            MA.DOWNLOAD_COUNT,
+            MA.IMAGE_WIDTH,
+            MA.IMAGE_HEIGHT,
+            MA.SHOW_INDEX
+        FROM PCP_BBS_MESSAGE_ATTACHMENT MA
+        WHERE MA.MESSAGE_SEQ = #{messageSeq} AND MA.STATUS_TYPE='1'
+        ORDER BY MA.ATTACHMENT_SEQ DESC
+        LIMIT 1
+    </select>
+
+    <!-- 가장최근에 등록한 파일가져오기 -->
+    <select id="getMessageAttachmentLately" resultMap="getMessageAttachmentResult2">
+    	/** getMessageAttachmentLately */
+        SELECT
+            MA.ATTACHMENT_SEQ,
+            MA.MESSAGE_SEQ,
+            MA.FILE_TYPE,
+            MA.CONTENT_TYPE,
+            MA.FILE_NAME,
+            MA.DISPLAY_NAME,
+            MA.FILE_PATH,
+            MA.FILE_SIZE,
+            MA.DOWNLOAD_COUNT,
+            MA.IMAGE_WIDTH,
+            MA.IMAGE_HEIGHT,
+            MA.SHOW_INDEX
+        FROM PCP_BBS_MESSAGE_ATTACHMENT MA
+        WHERE MA.MESSAGE_SEQ = #{messageSeq} AND MA.STATUS_TYPE='1'
+       	<if test="fileTypes != null">
+       		AND  MA.FILE_TYPE IN
+       		<foreach item="fileTypes" collection="fileTypes" open="(" separator="," close=")">
+       			#{fileTypes}
+       		</foreach>
+       	</if>
+        LIMIT 1
+
+    </select>
+
+   <select id="getMessageAttachmentTypesList" resultMap="getMessageAttachmentResult">
+   		/** getMessageAttachmentTypesList */
+        SELECT
+            M.TITLE,
+            M.BOARD_SEQ,
+            M.MESSAGE_CATEGORY_SEQ,
+
+            MA.ATTACHMENT_SEQ,
+            MA.MESSAGE_SEQ,
+            MA.FILE_TYPE,
+            MA.CONTENT_TYPE,
+            MA.FILE_NAME,
+            MA.DISPLAY_NAME,
+            MA.FILE_PATH,
+            MA.FILE_SIZE,
+            MA.DOWNLOAD_COUNT,
+            MA.REGISTER_DATE,
+            MA.IMAGE_WIDTH,
+            MA.IMAGE_HEIGHT,
+            MA.SHOW_INDEX
+        FROM PCP_BBS_MESSAGE_ATTACHMENT MA LEFT OUTER JOIN PCP_BBS_MESSAGE M ON MA.MESSAGE_SEQ = M.MESSAGE_SEQ
+        WHERE MA.MESSAGE_SEQ = #{messageSeq} AND MA.STATUS_TYPE='1'
+
+        	<if test="fileTypes != null">
+        		AND  MA.FILE_TYPE IN
+        		<foreach item="fileTypes" collection="fileTypes" open="(" separator="," close=")">
+        			#{fileTypes}
+        		</foreach>
+        	</if>
+
+    </select>
+
+
+    <insert id="insertMessageAttachment" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageAttachmentVO">
+    	/** insertMessageAttachment */
+		INSERT INTO PCP_BBS_MESSAGE_ATTACHMENT (
+             MESSAGE_SEQ,
+             FILE_TYPE,
+             CONTENT_TYPE,
+             FILE_NAME,
+             DISPLAY_NAME,
+             FILE_PATH,
+             FILE_SIZE,
+             DOWNLOAD_COUNT,
+             REGISTER_DATE,
+             IMAGE_WIDTH,
+             IMAGE_HEIGHT,
+             SHOW_INDEX
+		) VALUES (
+             #{messageSeq},
+             #{fileType},
+             #{contentType},
+             #{fileName},
+             #{displayName},
+             #{filePath},
+             #{fileSize},
+             #{downloadCount},
+             NOW(),
+             #{imageWidth},
+             #{imageHeight},
+             #{showIndex}
+		)
+    </insert>
+
+    <update id="updateMessageAttachment" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageAttachmentVO">
+    	/** updateMessageAttachment */
+        UPDATE PCP_BBS_MESSAGE_ATTACHMENT
+        	<set>
+             MESSAGE_SEQ=#{messageSeq},
+             FILE_TYPE=#{fileType},
+             CONTENT_TYPE=#{contentType},
+             FILE_NAME=#{fileName},
+             DISPLAY_NAME=#{displayName},
+             FILE_PATH=#{filePath},
+             FILE_SIZE=#{fileSize},
+             DOWNLOAD_COUNT=#{downloadCount},
+             IMAGE_WIDTH=#{imageWidth},
+             IMAGE_HEIGHT=#{imageHeight}
+			</set>
+        WHERE  ATTACHMENT_SEQ=#{attachmentSeq} AND MA.STATUS_TYPE='1'
+        	   <if test="showIndex != null and showIndex =='' ">
+        	   AND SHOW_INDEX = #{showIndex}
+        	   </if>
+
+    </update>
+
+    <delete id="deleteMessageAttachment" parameterType="java.lang.String">
+    	/** deleteMessageAttachment */
+        DELETE FROM PCP_BBS_MESSAGE_ATTACHMENT  WHERE ATTACHMENT_SEQ = #{attachmentIds}
+    </delete>
+
+    <delete id="deleteMessageAttachmentShowIdx" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageAttachmentVO">
+    	/** deleteMessageAttachment */
+        DELETE FROM PCP_BBS_MESSAGE_ATTACHMENT  WHERE MESSAGE_SEQ = #{messageSeq} and SHOW_INDEX = #{showIndex} AND STATUS_TYPE='1'
+    </delete>
+
+    <update id="updateMessageAttachmentShowIdx"  parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageAttachmentVO">
+    	/** updateMessageAttachmentShowIdx */
+        UPDATE PCP_BBS_MESSAGE_ATTACHMENT set STATUS_TYPE='0' WHERE MESSAGE_SEQ = #{messageSeq} and SHOW_INDEX = #{showIndex} AND STATUS_TYPE='1'
+    </update>
+
+    <!-- 게시물에 있는 모든 파일삭제 -->
+    <delete id="deleteMessageAttachmentMessageId" parameterType="java.lang.String">
+    	/** deleteMessageAttachmentMessageId */
+        DELETE FROM PCP_BBS_MESSAGE_ATTACHMENT WHERE MESSAGE_SEQ = #{messageSeq}
+    </delete>
+
+    <!-- 게시물에 검색하여 파일삭제 -->
+    <delete id="deleteNameMessageAttachment" parameterType="java.lang.String">
+    	/** deleteNameMessageAttachment */
+        DELETE FROM PCP_BBS_MESSAGE_ATTACHMENT WHERE FILE_NAME = #{fileName}
+    </delete>
+
+    <!-- 게시물에 있는 모든 파일삭제 -->
+    <delete id="deleteSelectMessageAttachment" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageAttachmentVO">
+    	/** deleteSelectMessageAttachment */
+        DELETE FROM PCP_BBS_MESSAGE_ATTACHMENT
+        <trim prefix="WHERE">
+        	<choose>
+        	<when test="checkedIds != null">
+        		MESSAGE_SEQ IN
+        		<foreach item="checkedIds" collection="checkedIds" open="(" separator="," close=")">
+        			#{checkedIds}
+        		</foreach>
+        	</when>
+        	<otherwise>
+        		MESSAGE_SEQ = 0
+        	</otherwise>
+        	</choose>
+        </trim>
+    </delete>
+
+    <!-- 게시물에 있는 모든 파일삭제 -->
+    <delete id="deleteMessageAttachmentFileTypes" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageAttachmentVO">
+    	/** deleteMessageAttachmentFileTypes */
+        DELETE FROM PCP_BBS_MESSAGE_ATTACHMENT
+            WHERE MESSAGE_SEQ = #{messageSeq}
+           	AND FILE_TYPE IN
+       		<foreach item="fileTypes" collection="fileTypes" open="(" separator="," close=")">
+       			#{fileTypes}
+       		</foreach>
+    </delete>
+
+</mapper>

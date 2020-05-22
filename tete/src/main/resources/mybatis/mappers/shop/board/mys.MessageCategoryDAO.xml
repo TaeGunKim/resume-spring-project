@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mycompany.myapp.shopcomponent.bbs.dao.MessageCategoryDAO">
+
+    <!-- 조회:목록전체갯수 -->
+    <select id="getListTotalCount" resultType="java.lang.Integer">
+        SELECT COUNT(MESSAGE_CATEGORY_SEQ) AS TOTAL_COUNT
+        FROM PCP_BBS_MESSAGE_CATEGORY
+        WHERE BOARD_SEQ = #{boardSeq}
+    </select>
+
+     <resultMap id="getMessageCategoryResult" type="com.mycompany.myapp.shopcomponent.bbs.vo.MessageCategoryVO">
+        <id property="messageCategorySeq" column="MESSAGE_CATEGORY_SEQ"/>
+        <result property="parentMessageCategorySeq" column="PARENT_MESSAGE_CATEGORY_SEQ"/>
+        <result property="boardSeq" column="BOARD_SEQ"/>
+        <result property="messageCategoryName" column="MESSAGE_CATEGORY_NAME"/>
+        <result property="sortTree" column="SORT_TREE"/>
+        <result property="statusType" column="STATUS_TYPE"/>
+    </resultMap>
+    <select id="getMessageCategoryList" resultMap="getMessageCategoryResult">
+        SELECT
+            MESSAGE_CATEGORY_SEQ,
+            PARENT_MESSAGE_CATEGORY_SEQ,
+            IFNULL(BOARD_SEQ,0) BOARD_SEQ,
+            MESSAGE_CATEGORY_NAME,
+            SORT_TREE,
+            STATUS_TYPE
+        FROM PCP_BBS_MESSAGE_CATEGORY
+        WHERE BOARD_SEQ = #{boardSeq}
+        ORDER BY SORT_TREE ASC, CREATE_DATE ASC
+    </select>
+
+    <select id="getMessageCategory" resultMap="getMessageCategoryResult">
+        SELECT
+			MESSAGE_CATEGORY_SEQ,
+			PARENT_MESSAGE_CATEGORY_SEQ,
+			IFNULL(BOARD_SEQ,0) BOARD_SEQ,
+			MESSAGE_CATEGORY_NAME,
+			SORT_TREE,
+			MESSAGE_CATEGORY_LEVEL,
+			STATUS_TYPE,
+			CREATE_ID,
+			CREATE_DATE
+        FROM PCP_BBS_MESSAGE_CATEGORY
+        WHERE MESSAGE_CATEGORY_SEQ = #{messageCategorySeq}
+    </select>
+
+    <insert id="insertMessageCategory" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageCategoryVO" useGeneratedKeys="true" keyProperty="messageCategorySeq">
+        INSERT INTO PCP_BBS_MESSAGE_CATEGORY (
+			PARENT_MESSAGE_CATEGORY_SEQ,
+			BOARD_SEQ,
+			MESSAGE_CATEGORY_LEVEL,
+			MESSAGE_CATEGORY_NAME,
+			STATUS_TYPE,
+			CREATE_ID,
+			CREATE_IP,
+			CREATE_DATE,
+			UPDATE_ID,
+			UPDATE_IP,
+			UPDATE_DATE
+        ) VALUES (
+            #{parentMessageCategorySeq},
+            #{boardSeq},
+            #{messageCategoryLevel},
+			#{messageCategoryName},
+			'1',
+            #{createId},
+            #{createIp},
+            NOW(),
+            #{updateId},
+            #{updateIp},
+            NOW()
+         )
+        <selectKey keyProperty="messageCategorySeq" resultType="java.lang.String" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <update id="updateMessageCategory" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageCategoryVO">
+        UPDATE PCP_BBS_MESSAGE_CATEGORY
+        SET
+            MESSAGE_CATEGORY_NAME = #{messageCategoryName},
+			UPDATE_ID			  = #{updateId},
+			UPDATE_DATE			  = NOW()
+        WHERE  MESSAGE_CATEGORY_SEQ   = #{messageCategorySeq}
+    </update>
+
+	<update id="updateMessageCategoryStatus" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageCategoryVO">
+		UPDATE PCP_BBS_MESSAGE_CATEGORY
+        SET
+        	STATUS_TYPE			  = '0',
+        	UPDATE_ID			  = #{updateId},
+			UPDATE_DATE			  = NOW()
+        WHERE  MESSAGE_CATEGORY_SEQ   = #{messageCategorySeq}
+	</update>
+
+    <!-- 같은  soreTREE에서  -->
+    <update id="updateMessageCategorySortTree" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageCategoryVO">
+        UPDATE PCP_BBS_MESSAGE_CATEGORY
+        SET
+        	SORT_TREE = #{sortTree},
+        	MESSAGE_CATEGORY_LEVEL = #{messageCategoryLevel}
+        WHERE MESSAGE_CATEGORY_SEQ = #{messageCategorySeq}
+    </update>
+
+    <!-- 부모는 삭제안함 현재 2뎁스만 사용가능하게 한다. -->
+    <update id="deleteMessageCategory" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageCategoryVO">
+        DELETE FROM PCP_BBS_MESSAGE_CATEGORY
+        WHERE MESSAGE_CATEGORY_SEQ = #{messageCategorySeq}
+    </update>
+
+</mapper>

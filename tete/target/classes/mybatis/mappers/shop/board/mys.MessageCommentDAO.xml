@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mycompany.myapp.shopcomponent.bbs.dao.MessageCommentDAO">
+
+    <!-- 조회:목록전체갯수 -->
+    <select id="getListTotalCount" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageCommentSearchVO" resultType="java.lang.Integer">
+        SELECT COUNT(*) AS TOTAL_COUNT
+        FROM PCP_BBS_MESSAGE_COMMENT
+        WHERE MESSAGE_SEQ = #{messageSeq}
+<!--         AND STATUS_TYPE &lt;&gt; 0 -->
+    </select>
+
+    <select id="getMessageCommentList" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageCommentSearchVO" resultType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageCommentVO">
+        SELECT
+            COMMENT_SEQ as commentSeq,
+            MESSAGE_SEQ as messageSeq,
+            TITLE as title,
+            COMMENTS as comments,
+            DATE_FORMAT(CREATE_DATE, '%Y.%m.%d') as createDate,
+            CREATE_ID as createId,
+            CREATE_PWD as createPwd,
+            CREATE_NAME as createName,
+            CREATE_NICKNAME as createNickname,
+            CREATE_EMAIL as createEmail,
+            CREATE_IP as createIp,
+            DATE_FORMAT(UPDATE_DATE, '%Y.%m.%d') as updateDate,
+            UPDATE_ID as updateId,
+            STATUS_TYPE as statusType,
+            SORT_TREE as sortTree,
+            RECOMMEND_COUNT as recommendCount
+        FROM PCP_BBS_MESSAGE_COMMENT
+        WHERE MESSAGE_SEQ = #{messageSeq}
+       	AND STATUS_TYPE &lt;&gt; 0
+<!--         ORDER BY COMMENT_SEQ DESC -->
+        ORDER BY SORT_TREE DESC
+    </select>
+
+
+	<select id="getMessageCommentEventList" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageCommentSearchVO" resultType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageCommentVO">
+        SELECT
+            COMMENT_SEQ as commentSeq,
+            MESSAGE_SEQ as messageSeq,
+            TITLE as title,
+            COMMENTS as comments,
+            CREATE_DATE as createDate,
+            CREATE_ID as createId,
+            CREATE_PWD as createPwd,
+            CREATE_NAME as createName,
+            CREATE_NICKNAME as createNickname,
+            CREATE_EMAIL as createEmail,
+            CREATE_IP as createIp,
+            UPDATE_DATE as updateDate,
+            UPDATE_ID as updateId,
+            STATUS_TYPE as statusType,
+            SORT_TREE as sortTree,
+            RECOMMEND_COUNT as recommendCount
+        FROM PCP_BBS_MESSAGE_COMMENT
+        WHERE MESSAGE_SEQ = #{messageSeq}
+        AND TITLE = #{title}
+        ORDER BY RECOMMEND_COUNT DESC
+    </select>
+
+    <select id="getMessageCommentRegisterIdCount" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageCommentSearchVO"  resultType="java.lang.Integer">
+    	SELECT
+    		COUNT(*) as totalCount FROM PCP_BBS_MESSAGE_COMMENT
+    		 WHERE MESSAGE_SEQ = #{messageSeq} AND  CREATE_ID = #{createId}
+    </select>
+
+
+    <insert id="insertMessageComment" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageCommentFormVO" useGeneratedKeys="true" keyProperty="commentSeq">
+        INSERT INTO PCP_BBS_MESSAGE_COMMENT (
+			  MESSAGE_SEQ
+			  ,TITLE
+			  ,COMMENTS
+			  ,CREATE_DATE
+			  ,CREATE_ID
+			  ,CREATE_PWD
+			  ,CREATE_NAME
+			  ,CREATE_NICKNAME
+			  ,CREATE_EMAIL
+			  ,CREATE_IP
+			  ,STATUS_TYPE
+			  ,SORT_TREE
+        ) VALUES (
+              #{messageSeq}
+			  ,#{title}
+			  ,#{comments}
+			  ,now()
+			  ,#{createId}
+			  ,#{createPwd}
+			  ,#{createName}
+			  ,#{createNickname}
+			  ,#{createEmail}
+			  ,#{createIp}
+			  ,#{statusType}
+			  ,#{sortTree}
+         )
+        <selectKey keyProperty="commentSeq" resultType="java.lang.String" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <update id="updateMessageCommentSortTree" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageCommentFormVO">
+    	UPDATE PCP_BBS_MESSAGE_COMMENT SET
+    		SORT_TREE 		= #{sortTree},
+			UPDATE_DATE 	= NOW()
+    	WHERE  COMMENT_SEQ = #{commentSeq}
+        AND MESSAGE_SEQ = #{messageSeq}
+    </update>
+
+    <update id="updateMessageCommentRecommendCount" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageCommentFormVO">
+    	UPDATE PCP_BBS_MESSAGE_COMMENT SET
+    		RECOMMEND_COUNT 	= IFNULL(RECOMMEND_COUNT,0)+1,
+			UPDATE_DATE 	= NOW()
+    	WHERE  COMMENT_SEQ = #{commentSeq}
+        AND MESSAGE_SEQ = #{messageSeq}
+    </update>
+
+    <delete id="deleteComment" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageCommentFormVO">
+        DELETE FROM PCP_BBS_MESSAGE_COMMENT
+        WHERE COMMENT_SEQ = #{commentSeq}
+        AND MESSAGE_SEQ = #{messageSeq}
+    </delete>
+
+    <delete id="deleteSelectComment" parameterType="com.mycompany.myapp.shopcomponent.bbs.vo.MessageCommentFormVO">
+        DELETE FROM PCP_BBS_MESSAGE_COMMENT
+         WHERE MESSAGE_SEQ = #{messageSeq}
+        		AND COMMENT_SEQ IN
+	      		<foreach item="checkedIds" collection="checkedIds" open="(" separator="," close=")">
+	      			#{checkedIds}
+	      		</foreach>
+    </delete>
+
+</mapper>
