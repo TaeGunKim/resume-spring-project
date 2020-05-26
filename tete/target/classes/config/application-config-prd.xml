@@ -8,9 +8,20 @@
     <entry key="resource.view.suffix">.jsp</entry>
 
     <entry key="shop.database.driver">com.mysql.jdbc.Driver</entry>
+    <!--  //test local mysql -->
+    <!--
     <entry key="shop.database.url">jdbc:mysql://localhost/kimtgbase</entry>
     <entry key="shop.database.user">root</entry>
     <entry key="shop.database.password">MTIzNA==</entry>
+    -->
+    <!--  //test local mysql -->
+
+    <!--  //AWS kimtgbase mysql -->
+    <entry key="shop.database.url">jdbc:mysql://database-1.cynhygmt3wxq.ap-northeast-2.rds.amazonaws.com/kimtgbase</entry>
+    <entry key="shop.database.user">admin</entry>
+    <entry key="shop.database.password">azE0NzgxMjgh</entry>
+    <!--  //AWS kimtgbase mysql -->
+
     <!--  base64로 password 포맷 복호화함, MvcConfigurer getExposablePropertyPlaceholderConfigurer -->
 
 	<!--

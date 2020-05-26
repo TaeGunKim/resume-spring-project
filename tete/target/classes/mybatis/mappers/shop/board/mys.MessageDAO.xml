@@ -1553,7 +1553,7 @@
 		    end as create_date_diff
 		    ]]>
 		from
-			pcp_bbs_message
+			PCP_BBS_MESSAGE
 		where
 			STATUS_TYPE ='1'
 		order by
@@ -1566,7 +1566,7 @@
 		select
 			sub_title,count(sub_title) as sub_title_cnt
 		from
-			pcp_bbs_message
+			PCP_BBS_MESSAGE
 		where
 			STATUS_TYPE ='1'
 		group by

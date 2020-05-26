@@ -31,7 +31,8 @@ public class BaseMain {
 
 
             //String text = "qlalfqjsgh!$";
-    		String text = "1234";
+    		//String text = "1234";
+    		String text = "k1478128!";
 
             byte[] targetBytes = text.getBytes();
             // Base64 인코딩 ///////////////////////////////////////////////////
