@@ -4041,7 +4041,12 @@ keyframes zoom { 0%{
 }
 
 .blog_item {
-	margin-bottom: 50px
+	margin-bottom: 50px;
+	border:1px solid #BDBDBD;
+	cursor:pointer;
+}
+.blog_item:hover {
+	border:1px solid #585858;
 }
 
 .blog_details {
@@ -4387,7 +4392,7 @@ keyframes zoom { 0%{
 
 .single-post-area .blog_details {
 	box-shadow: none;
-	padding: 0
+	padding: 20px;
 }
 
 .single-post-area .social-links {

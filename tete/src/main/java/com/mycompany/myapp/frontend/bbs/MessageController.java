@@ -500,14 +500,6 @@ public class MessageController extends BaseController {
                     messageFormVO.setCreateDate(dateString);
                 }
 
-                /*if (messageFormVO.getProgressStatus()==null){
-                	// 입금자를 찾습니다 화면
-                	if ("depositfind".equals(boardId)) {
-                		messageFormVO.setProgressStatus(Constants.CONTENTS_PROGRESS_WAIT); // 미확인상태
-                	} else {
-                		messageFormVO.setProgressStatus(Constants.CONTENTS_PROGRESS_PROG); // 확인완료
-                	}
-                }*/
 
                 if (messageFormVO.getProgressStatus()==null){
                 	messageFormVO.setProgressStatus(Constants.CONTENTS_PROGRESS_PROG); // 진행

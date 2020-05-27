@@ -134,7 +134,7 @@ function onclickDelete() {
 				<div class="container">
 					<div class="row">
 						<div class="col-xl-12">
-							<div class="hero-cap">
+							<div class="hero-cap pt-30">
 								<h2>SideProject</h2>
 								<nav aria-label="breadcrumb ">
 									<ol class="breadcrumb">
@@ -170,7 +170,7 @@ function onclickDelete() {
 								<img class="img-fluid" src="/img/blog/list_4.png" alt="">
 							</c:when>
 							<c:otherwise>
-								<img class="img-fluid" src="/img/blog/list_1.png" alt="">
+								<!-- <img class="img-fluid" src="/img/blog/list_1.png" alt=""> -->
 							</c:otherwise>
 						</c:choose>
                      </div>
@@ -183,8 +183,12 @@ function onclickDelete() {
 							<li><i class="fa fa-eye"></i> ${messageVO.viewCount}</li>
                             <li><i class="fa fa-comments"></i> ${messageVO.commentCount} Comments</li>
                         	<li><i class="fa fa-calendar"></i><c:out value="${messageVO.createDate}" /></li>
-                        	<li><i class="fa fa-user"></i><c:out value="${messageVO.createName}" /></li>
+                        	<!--<li><i class="fa fa-user"></i><c:out value="${messageVO.createName}" /></li>-->
                         </ul>
+						<c:set var="userId" value="" />
+		                <c:if test="${pageContext.request.userPrincipal ne null && pageContext.request.userPrincipal ne ''}">
+		                	<c:set var="userId" value="${user.username}" />
+		                </c:if>
                         <div class="section-padding">
                         	<c:set var="contents" value="${messageVO.contents}" />
 							<c:out value="${contents}" escapeXml="false" />

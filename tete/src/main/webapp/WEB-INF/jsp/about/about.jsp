@@ -16,7 +16,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-xl-12">
-						<div class="hero-cap">
+						<div class="hero-cap pt-30">
 							<h2>About me</h2>
 							<nav aria-label="breadcrumb ">
 							<ol class="breadcrumb">

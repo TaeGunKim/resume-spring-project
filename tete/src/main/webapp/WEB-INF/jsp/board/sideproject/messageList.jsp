@@ -37,15 +37,13 @@ function onclickWrite() {
 </head>
 <body>
 
-
-
         <!-- Hero Start -->
         <div class="slider-area ">
             <div class="slider-height2 d-flex align-items-center">
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-12">
-                            <div class="hero-cap">
+                            <div class="hero-cap pt-30">
                                 <h2>SideProject</h2>
                                 <nav aria-label="breadcrumb ">
                                     <ol class="breadcrumb">
@@ -66,7 +64,7 @@ function onclickWrite() {
                 <div class="row">
 
 
-					<div class="col-lg-12">
+					<div class="col-lg-12 pb-20">
 						Total <strong>
 							<fmt:formatNumber value="${messageList.messageSearchVO.totalCount}" type="number" />
 						</strong> posts.
@@ -74,29 +72,28 @@ function onclickWrite() {
                     <div class="col-lg-8 mb-5 mb-lg-0">
                         <div class="blog_left_sidebar">
                         	<c:forEach items="${messageList.messageList}" var="list" varStatus="status">
-                            <article class="blog_item">
+                            <article class="blog_item" onclick="location.href='/sideproject/messageDetail.do?messageSeq=${list.messageSeq}&sortTree=${list.sortTree}&messageCategorySeq=${messageList.messageSearchVO.messageCategorySeq}&searchColumn=${messageList.messageSearchVO.searchColumn}&searchValue=${messageList.messageSearchVO.searchValue}'">
+<!--                             <article class="blog_item"> -->
                                 <div class="blog_item_img">
-                                	<a class="d-inline-block" href="/sideproject/messageDetail.do?messageSeq=${list.messageSeq}&sortTree=${list.sortTree}&messageCategorySeq=${messageList.messageSearchVO.messageCategorySeq}&searchColumn=${messageList.messageSearchVO.searchColumn}&searchValue=${messageList.messageSearchVO.searchValue}">
-	                                 	<c:choose>
-											<c:when test="${list.thumbnailUrl == '1' }">
-												<img class="card-img rounded-0" src="/img/blog/list_1.png" alt="">
-											</c:when>
-											<c:when test="${list.thumbnailUrl == '2' }">
-												<img class="card-img rounded-0" src="/img/blog/list_2.png" alt="">
-											</c:when>
-											<c:when test="${list.thumbnailUrl == '3' }">
-												<img class="card-img rounded-0" src="/img/blog/list_3.png" alt="">
-											</c:when>
-											<c:when test="${list.thumbnailUrl == '4' }">
-												<img class="card-img rounded-0" src="/img/blog/list_4.png" alt="">
-											</c:when>
-											<c:otherwise>
-												<!--
-												<img class="card-img rounded-0" src="/img/blog/list_1.png" alt="">
-												 -->
-											</c:otherwise>
-										</c:choose>
-									</a>
+                                 	<c:choose>
+										<c:when test="${list.thumbnailUrl == '1' }">
+											<img class="card-img rounded-0" src="/img/blog/list_1.png" alt="">
+										</c:when>
+										<c:when test="${list.thumbnailUrl == '2' }">
+											<img class="card-img rounded-0" src="/img/blog/list_2.png" alt="">
+										</c:when>
+										<c:when test="${list.thumbnailUrl == '3' }">
+											<img class="card-img rounded-0" src="/img/blog/list_3.png" alt="">
+										</c:when>
+										<c:when test="${list.thumbnailUrl == '4' }">
+											<img class="card-img rounded-0" src="/img/blog/list_4.png" alt="">
+										</c:when>
+										<c:otherwise>
+											<!--
+											<img class="card-img rounded-0" src="/img/blog/list_1.png" alt="">
+											 -->
+										</c:otherwise>
+									</c:choose>
 
                                     <!--
                                     <c:choose>
@@ -121,9 +118,7 @@ function onclickWrite() {
                                 </div>
 
                                 <div class="blog_details">
-                                    <a class="d-inline-block" href="/sideproject/messageDetail.do?messageSeq=${list.messageSeq}&sortTree=${list.sortTree}&messageCategorySeq=${messageList.messageSearchVO.messageCategorySeq}&searchColumn=${messageList.messageSearchVO.searchColumn}&searchValue=${messageList.messageSearchVO.searchValue}">
-                                        <h2><c:out value="${fn:substring(list.title,0,100)}" /></h2>
-                                    </a>
+                                    <h2><c:out value="${fn:substring(list.title,0,100)}" /></h2>
                                     <p>
                                     	<c:out value="${fn:substring(list.summaryContents,0,100)}" escapeXml="false" />..
                                     	<!--<c:out value="${list.createDate}" />-->
@@ -164,7 +159,14 @@ function onclickWrite() {
                         </div>
 
 						<div class="form-group">
-                        	<button class="button button-contactForm btn_1 boxed-btn" onclick="onclickWrite();">글쓰기</button>
+							<c:choose>
+								<c:when test="${pageContext.request.userPrincipal != null}">
+            	            		<button class="button button-contactForm btn_1 boxed-btn" onclick="onclickWrite();">글쓰기</button>
+            	            	</c:when>
+            	            	<c:otherwise>
+            	            		<!-- Only Admin User Can Writing-->
+            	            	</c:otherwise>
+           	            	</c:choose>
 						</div>
                     </div>
                     <div class="col-lg-4">
