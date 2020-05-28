@@ -63,6 +63,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 	            .antMatchers("/about/**").permitAll()
 	            .antMatchers("/history/**").permitAll()
 	            .antMatchers("/skills/**").permitAll()
+	            .antMatchers("/media/**").permitAll()
 	            .antMatchers("/").permitAll()
 	            .antMatchers("/main.do").permitAll()
 	            .antMatchers("/sideproject/**").permitAll()
