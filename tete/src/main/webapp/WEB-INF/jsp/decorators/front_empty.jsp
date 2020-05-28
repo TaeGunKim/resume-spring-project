@@ -46,7 +46,6 @@
 	<!-- All JS Custom Plugins Link Here here -->
 	<script src="/js/vendor/modernizr-3.5.0.min.js"></script>
 	<!-- Jquery, Popper, Bootstrap -->
-	<script src="/js/vendor/jquery-1.12.4.min.js"></script>
 	<script src="/js/popper.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
 	<!-- Jquery Mobile Menu -->

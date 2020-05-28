@@ -15,7 +15,7 @@ $(document).ready(function() {
     var totalPages = ${messageList.messageSearchVO.totalPages};
 
     //pagination_web
-	$('#pagination').twbsPagination({
+	$('#pagination_web').twbsPagination({
          totalPages: totalPages
         ,startPage: startPage
         ,visiblePages: 10
@@ -212,10 +212,9 @@ function onclickWrite() {
                                 <h3 class="widget_title">Recent Post</h3>
                                 <c:forEach items="${messageListRecent4.messageList}" var="recentList" varStatus="status">
                                 <div class="media post_item">
-                                    <img src="/img/post/post_1.png" alt="post">
                                     <div class="media-body">
                                         <a href="/sideproject/messageDetail.do?messageSeq=${recentList.messageSeq}&sortTree=${recentList.sortTree}">
-                                            <h3>${fn:substring(recentList.title,0,20)}...</h3>
+                                            <h3>${fn:substring(recentList.title,0,15)}...</h3>
                                         </a>
                                         <p>${recentList.createDateDiff}</p>
                                     </div>

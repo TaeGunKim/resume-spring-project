@@ -53,8 +53,6 @@ function onclickSave() {
 	var form = $("#form1")[0];
     var formData = new FormData(form);
 
-    formData.append("varFiled1", "안녕하세요~");
-
     for(var pair of formData.entries()) {
    	   console.log(pair[0]+ ', '+ pair[1]);
    	}
@@ -153,7 +151,15 @@ function onclickSave() {
 								<textarea id="contents" name="contents">${messageVO.contents}</textarea>
 							</div>
 							<div class="mt-10">
-								<input type="file" id="file" name="file">
+								<c:if test="${messageVO.attachmentList != null && messageVO.attachmentList !=  ''}">
+									<c:forEach items="${messageVO.attachmentList}" var="attachment" varStatus="status">
+									<input type="file" id="file" name="file">
+									[현재 등록된 파일 : ${attachment.displayName}]
+									</c:forEach>
+								</c:if>
+								<c:if test="${messageVO.attachmentList == '' || messageVO.attachmentList == null || messageVO.attachmentList == '[]' }">
+									<input type="file" id="file" name="file">
+								</c:if>
 							</div>
 						</form>
 						<div class="form-group mt-40 text-cener">

@@ -186,13 +186,22 @@ function onclickDelete() {
                         	<!--<li><i class="fa fa-user"></i><c:out value="${messageVO.createName}" /></li>-->
                         </ul>
 						<c:set var="userId" value="" />
-		                <c:if test="${pageContext.request.userPrincipal ne null && pageContext.request.userPrincipal ne ''}">
+		                <c:if test="${pageContext.request.userPrincipal != null && pageContext.request.userPrincipal != ''}">
 		                	<c:set var="userId" value="${user.username}" />
 		                </c:if>
                         <div class="section-padding">
                         	<c:set var="contents" value="${messageVO.contents}" />
 							<c:out value="${contents}" escapeXml="false" />
+
+							<c:if test="${messageVO.attachmentCount > 0}">
+								<c:forEach items="${messageVO.attachmentList}" var="attachmentList" varStatus="status">
+									<img src="/media/${attachmentList.fileName}.image"  <c:if test="${isMobile == false}"> style="width:50%"</c:if>>
+									<br/>
+								</c:forEach>
+								<br/><br/>
+							</c:if>
                         </div>
+
                      </div>
                   </div>
                   <div class="navigation-top">
@@ -431,10 +440,9 @@ function onclickDelete() {
                            <h3 class="widget_title">Recent Post</h3>
                            <c:forEach items="${messageListRecent4.messageList}" var="recentList" varStatus="status">
                            <div class="media post_item">
-                               <img src="/img/post/post_1.png" alt="post">
                                <div class="media-body">
                                    <a href="/sideproject/messageDetail.do?messageSeq=${recentList.messageSeq}&sortTree=${recentList.sortTree}">
-                                       <h3>${fn:substring(recentList.title,0,20)}...</h3>
+                                       <h3>${fn:substring(recentList.title,0,15)}...</h3>
                                    </a>
                                    <p>${recentList.createDateDiff}</p>
                                </div>

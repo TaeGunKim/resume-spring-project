@@ -8,17 +8,47 @@
     <entry key="resource.view.suffix">.jsp</entry>
 
     <entry key="shop.database.driver">com.mysql.jdbc.Driver</entry>
+    <!--  //test local mysql -->
+    <!--
     <entry key="shop.database.url">jdbc:mysql://localhost/kimtgbase</entry>
     <entry key="shop.database.user">root</entry>
     <entry key="shop.database.password">MTIzNA==</entry>
-    <entry key="shop.database.pool.min.size">10</entry>
-    <entry key="shop.database.pool.max.size">20</entry>
+    -->
+    <!--  //test local mysql -->
+
+    <!--  //AWS kimtgbase mysql -->
+    <entry key="shop.database.url">jdbc:mysql://database-1.cynhygmt3wxq.ap-northeast-2.rds.amazonaws.com/kimtgbase</entry>
+    <entry key="shop.database.user">admin</entry>
+    <entry key="shop.database.password">azE0NzgxMjgh</entry>
+    <!--  //AWS kimtgbase mysql -->
+
+    <!--  base64로 password 포맷 복호화함, MvcConfigurer getExposablePropertyPlaceholderConfigurer -->
+
+    <entry key="shop.database.pool.min.size">25</entry>
+    <entry key="shop.database.pool.max.size">50</entry>
 
     <!-- Attachment Config -->
-    <entry key="upload.path">/home/hosting_users/file/upload</entry>
-	<entry key="upload.file.type">jpg|gif|png|bmp|doc|pdf|ppt|txt|xls|xlsx|zip</entry>
+<!--     <entry key="upload.path">C:\\upload</entry> -->
+    <entry key="upload.path">/usr/local/tomcat/upload</entry>
+    <entry key="upload.file.type">jpg|gif|png|bmp|doc|pdf|ppt|txt|xls|zip</entry>
 
-	<!-- server info -->
-	<entry key="server.prod.images.domain">http://shopping.happycoop.or.kr</entry>
+ 	<!-- Java Mail Setting -->
+    <entry key="mail.host">smtp.gmail.com</entry>
+    <entry key="mail.port">587</entry>
+    <entry key="mail.username">ktgstar@gmail.com</entry>
+    <entry key="mail.password">topgunclass89!!</entry>
+    <entry key="mail.protocol">smtp</entry>
+    <entry key="mail.defaultEncoding">UTF-8</entry>
+    <entry key="mail.defaultFromEmail"></entry>
+    <entry key="mail.defaultFromName">hellokimtg.com</entry>
 
+    <!-- Java Mail javaMailProperties -->
+    <entry key="mail.smtp.auth">true</entry>
+    <entry key="mail.smtp.starttls.enable">true</entry>
+    <entry key="mail.smtp.quitwait">false</entry>
+    <entry key="mail.debug">true</entry>
+    <entry key="mail.from">ktgstar@gmail.com</entry>
+
+    <!-- server info -->
+	<entry key="server.prod.images.domain">http://hellokimtg.com</entry>
 </properties>

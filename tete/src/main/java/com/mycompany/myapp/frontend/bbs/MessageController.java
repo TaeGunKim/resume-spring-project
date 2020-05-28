@@ -541,47 +541,6 @@ public class MessageController extends BaseController {
                     if(attachmentVO!=null){
                         messageAttachmentList.add(messageService.getShowIndexMessageAttachmentoVO(attachmentVO, String.valueOf(boardVO.getBoardId()), 1));
                     }
-
-                    attachmentVO = attachmentProcessor.upload(Constants.SERVICE_ID_BBS, messageFormVO.getShowFile2());
-                    if(attachmentVO!=null){
-                        messageAttachmentList.add(messageService.getShowIndexMessageAttachmentoVO(attachmentVO, String.valueOf(boardVO.getBoardId()), 2));
-                    }
-
-                    attachmentVO = attachmentProcessor.upload(Constants.SERVICE_ID_BBS, messageFormVO.getShowFile3());
-                    if(attachmentVO!=null){
-                        messageAttachmentList.add(messageService.getShowIndexMessageAttachmentoVO(attachmentVO, String.valueOf(boardVO.getBoardId()), 3));
-                    }
-
-                    attachmentVO = attachmentProcessor.upload(Constants.SERVICE_ID_BBS, messageFormVO.getShowFile4());
-                    if(attachmentVO!=null){
-                        messageAttachmentList.add(messageService.getShowIndexMessageAttachmentoVO(attachmentVO, String.valueOf(boardVO.getBoardId()), 4));
-                    }
-
-                    attachmentVO = attachmentProcessor.upload(Constants.SERVICE_ID_BBS, messageFormVO.getShowFile5());
-                    if(attachmentVO!=null){
-                        messageAttachmentList.add(messageService.getShowIndexMessageAttachmentoVO(attachmentVO, String.valueOf(boardVO.getBoardId()), 5));
-                    }
-
-                    attachmentVO = attachmentProcessor.upload(Constants.SERVICE_ID_BBS, messageFormVO.getShowFile6());
-                    if(attachmentVO!=null){
-                        messageAttachmentList.add(messageService.getShowIndexMessageAttachmentoVO(attachmentVO, String.valueOf(boardVO.getBoardId()), 6));
-                    }
-
-                    attachmentVO = attachmentProcessor.upload(Constants.SERVICE_ID_BBS, messageFormVO.getShowFile7());
-                    if(attachmentVO!=null){
-                        messageAttachmentList.add(messageService.getShowIndexMessageAttachmentoVO(attachmentVO, String.valueOf(boardVO.getBoardId()), 7));
-                    }
-
-                    attachmentVO = attachmentProcessor.upload(Constants.SERVICE_ID_BBS, messageFormVO.getShowFile8());
-                    if(attachmentVO!=null){
-                        messageAttachmentList.add(messageService.getShowIndexMessageAttachmentoVO(attachmentVO, String.valueOf(boardVO.getBoardId()), 8));
-                    }
-
-                    attachmentVO = attachmentProcessor.upload(Constants.SERVICE_ID_BBS, messageFormVO.getShowFile9());
-                    if(attachmentVO!=null){
-                        messageAttachmentList.add(messageService.getShowIndexMessageAttachmentoVO(attachmentVO, String.valueOf(boardVO.getBoardId()), 9));
-                    }
-
                     messageFormVO.setAttachmentList(messageAttachmentList);
                     messageFormVO.setAttachmentCount(messageFormVO.getAttachmentCount() + messageAttachmentList.size());
                 }
