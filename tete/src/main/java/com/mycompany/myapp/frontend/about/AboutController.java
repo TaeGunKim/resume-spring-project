@@ -47,9 +47,6 @@ public class AboutController extends BaseController{
 
 		Map<String, Object> model = new HashMap<String, Object>();
 
-		System.out.println("name :: " + testVO.getName());
-		System.out.println("email :: " + testVO.getEmail());
-
 		AboutVO about = aboutService.getAbout();
 		model.put("about", about);
 
@@ -57,6 +54,20 @@ public class AboutController extends BaseController{
 		model.put("menuList", menuList);
 
 		return new ModelAndView("about/about", model);
+	}
+	@RequestMapping(value = "/about/aboutJobtest")
+	public ModelAndView aboutJobtest(HttpServletRequest request, HttpServletResponse rsponse,Authentication authentication, AboutVO testVO){
+		LOG.debug("aboutJobtest~~");
+
+		Map<String, Object> model = new HashMap<String, Object>();
+
+		AboutVO about = aboutService.getAbout();
+		model.put("about", about);
+
+		MenuListVO menuList = menuService.getUseMenu();
+		model.put("menuList", menuList);
+
+		return new ModelAndView("about/aboutJobtest", model);
 	}
 
 	@RequestMapping(value = "/about/aboutInsert.json", method = RequestMethod.POST)

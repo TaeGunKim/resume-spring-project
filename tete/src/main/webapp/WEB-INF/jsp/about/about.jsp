@@ -42,7 +42,7 @@
 				</div>
 				<div class="col-lg-5 col-md-6">
 					<div class="about-me-caption">
-						<h2>My name Is<br/>${about.name}</h2>
+						<h2>제 이름은 <br/>${about.name}</h2>
 						<h4>${about.job}</h4>
 						<p class="pb-30">${about.intro}</p>
 						<p>${about.birth}</p>
@@ -58,22 +58,51 @@
 	<!-- About Area start -->
 	<section class="about-area section-paddingt30">
 	<div class="container">
-		<div class="row ">
-			<div class="col-lg-5">
+		<div class="row">
+			<div class="col-md-3">
+				<img src="/img/about/undraw_success_factors_fay0.png" class="img-fluid">
+			</div>
+			<div class="col-md-9 mt-sm-20">
 				<div class="about-caption mb-50">
-					<h3>Programming With Passion While Exploring The World.</h3>
-					<p class="pera1">${about.about}</p>
+					<h3>제 소개를 할게요</h3>
+					<p class="pera1">블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라</p>
+					<p class="pera1">블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라</p>
 				</div>
 			</div>
-			<div class="col-lg-5 offset-lg-1">
-				<div class="about-caption2">
-					<h3>
-						If you want to hire your Company.
-					</h3>
-					<p>Contact to me, I am Hardworking person.</p>
-					<div class="send-cv">
-						<a href="mailto:${about.email}" target="_top">${about.email} <i class="ti-arrow-right"></i></a>
-					</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<img src="/img/about/undraw_team_spirit_hrr4.png" class="img-fluid">
+			</div>
+			<div class="col-md-9 mt-sm-20">
+				<div class="about-caption mb-50">
+					<h3>저의 큰 장점은 XXX 입니다.</h3>
+					<p class="pera1">블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라</p>
+					<p class="pera1">블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라</p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-9">
+				<div class="about-caption mb-50">
+					<h3>저는 일할때 XXX를 제일 중요하게 생각합니다.</h3>
+					<p class="pera1">ㅁㄴ아ㅣㅓㅁ너ㅏㅣ옴나ㅓ오마ㅓ노옴ㄴㅇㅁㄴ아ㅣㅓㅁ너ㅏㅣ옴나ㅓ오마ㅓ노옴ㄴㅇㅁㄴ아ㅣㅓㅁ너ㅏㅣ옴나ㅓ오마ㅓ노옴ㄴㅇ</p>
+					<p class="pera1">ㅁㄴ아ㅣㅓㅁ너ㅏㅣ옴나ㅓ오마ㅓ노옴ㄴㅇㅁㄴ아ㅣㅓㅁ너ㅏㅣ옴나ㅓ오마ㅓ노옴ㄴㅇㅁㄴ아ㅣㅓㅁ너ㅏㅣ옴나ㅓ오마ㅓ노옴ㄴㅇ</p>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<img src="/img/about/undraw_fatherhood_7i19.png" class="img-fluid">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<img src="/img/about/undraw_certificate_343v.png" class="img-fluid">
+			</div>
+			<div class="col-md-9 mt-sm-20">
+				<div class="about-caption mb-50">
+					<h3>앞으로의 목표는 </h3>
+					<p class="pera1">헬로킴티지헬로킴티지헬로킴티지헬로킴티지헬로킴티지헬로킴티지헬로킴티지헬로킴티지헬로킴티지헬로킴티지헬로킴티지헬로킴티지</p>
+					<p class="pera1">헬로킴티지헬로킴티지헬로킴티지헬로킴티지헬로킴티지헬로킴티지헬로킴티지헬로킴티지헬로킴티지헬로킴티지헬로킴티지헬로킴티지</p>
 				</div>
 			</div>
 		</div>
@@ -86,11 +115,12 @@
 		<div class="row align-items-center justify-content-between">
 			<div class="col-xl-6 col-lg-8 col-md-8">
 				<div class="wantToWork-caption wantToWork-caption2">
-					<h2>Do you want to see my work ?</h2>
+					<h2>저를 더 알고싶으신가요?</h2>
+					<h3>인성검사결과를 보여드릴게요</h3>
 				</div>
 			</div>
 			<div class="col-xl-2 col-lg-2 col-md-3">
-				<a href="/history/historyList.do" class="btn btn-black f-right">My work</a>
+				<a href="/about/aboutJobtest.do" class="btn btn-black f-right">인성검사결과 보기</a>
 			</div>
 		</div>
 	</div>
