@@ -22,9 +22,9 @@
 					<div class="row">
 						<div class="col-xl-6 col-lg-6 col-md-8">
 							<div class="hero__caption">
-								<span data-animation="fadeInUp" data-delay=".4s">소제목소제목소제목</span>
-								<h1 data-animation="fadeInUp" data-delay=".6s">대제목대제목대제목</h1>
-								<P data-animation="fadeInUp" data-delay=".8s">설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명</P>
+								<span data-animation="fadeInUp" data-delay=".4s">Welcome.</span>
+								<h1 data-animation="fadeInUp" data-delay=".6s">I'm Java Web Developer</h1>
+								<P data-animation="fadeInUp" data-delay=".8s">저를 알리기 위해 이 사이트를 만들었습니다.</P>
 								<!-- Hero-btn -->
 								<div class="hero__btn">
 									<a href="/about/about.do" class="btn hero-btn" data-animation="fadeInLeft" data-delay=".8s">제소개를할께요</a>
@@ -47,14 +47,13 @@
 					<div class="about-caption mb-50">
 						<h3>이 홈페이지는 저를 알리기 위한 사이트입니다.</h3>
 						<p class="pera1">효과적인 이력의 홍보를 위해 저는 사이드 프로젝트로 이 사이트를 제작하였습니다.</p>
-						<p>이 사이트의 소스는 공개되지 않으며 제 개인의 자산입니다. 또한 이미지와 템플릿은 모두 무료로 받았으며 출처는 사이트프로젝트 게시판에 올려놓았습니다.</p>
+						<p>이 사이트의 소스는 공개되지 않으며 제 개인의 자산입니다. 또한 이미지와 템플릿은 모두 무료 배포용으로 받았으며 출처는 사이트프로젝트 게시판에 올려놓았습니다.</p>
 					</div>
 				</div>
 				<div class="col-lg-5 offset-lg-1">
 					<div class="about-caption2">
 						<h3>
-<!-- 							저는 일할 준비가 되어있습니다! -->
-							If you want me.
+							저와 일하고 싶으시다면
 						</h3>
 						<p>연락주세요!</p>
 						<div class="send-cv">
