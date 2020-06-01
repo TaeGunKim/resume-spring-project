@@ -67,7 +67,7 @@
 									<tr>
 										<td>
 											<p>${fn:substring(list.startdate,0,7)} ~ ${fn:substring(list.enddate,0,7)}</p>
-											<p>졸업</p>
+											<p class="strong">${list.status}</p>
 										</td>
 										<td scope="row">
 											${list.title}
@@ -102,7 +102,7 @@
 									<tr>
 										<td>
 											<p>${fn:substring(list.startdate,0,7)} ~ ${fn:substring(list.enddate,0,7)}</p>
-											<p>수료</p>
+											<p class="strong">${list.status}</p>
 										</td>
 										<td scope="row">
 											${list.title}
@@ -137,6 +137,7 @@
 									<tr>
 										<td>
 											<p>${fn:substring(list.startdate,0,7)} ~ ${fn:substring(list.enddate,0,7)}</p>
+											<p class="strong">${list.status}</p>
 										</td>
 										<td scope="row">
 											${list.title}

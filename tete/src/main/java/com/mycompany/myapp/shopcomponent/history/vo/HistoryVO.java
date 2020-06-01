@@ -16,11 +16,14 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @description
  * </pre>
  */
-@XmlRootElement(name = "HistoryListVO")
+@XmlRootElement(name = "HistoryVO")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class HistoryVO implements Serializable{
 
 	private static final long serialVersionUID = 7120477360723267248L;
+
+	@XmlElement(name = "id")
+	private String id;
 
 	@XmlElement(name = "type")
 	private String type;
@@ -36,6 +39,9 @@ public class HistoryVO implements Serializable{
 
 	@XmlElement(name = "enddate")
 	private String enddate;
+
+	@XmlElement(name = "status")
+	private String status;
 
 	@XmlElement(name = "description")
 	private String description;
@@ -95,8 +101,17 @@ public class HistoryVO implements Serializable{
 	public void setCreate_date(String create_date) {
 		this.create_date = create_date;
 	}
-
-
-
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 
 }

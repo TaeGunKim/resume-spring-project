@@ -5,7 +5,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.mycompany.myapp.shopcomponent.history.vo.HistoryDetailVO;
 import com.mycompany.myapp.shopcomponent.history.vo.HistorySearchVO;
+import com.mycompany.myapp.shopcomponent.history.vo.HistorySiteVO;
 import com.mycompany.myapp.shopcomponent.history.vo.HistoryVO;
 
 /**
@@ -21,5 +23,11 @@ import com.mycompany.myapp.shopcomponent.history.vo.HistoryVO;
 public interface HistoryDAO extends Serializable {
 
 	List<HistoryVO> getHistoryList(HistorySearchVO historySearchVO);
+
+	List<HistoryDetailVO> getHistoryDetailList(HistoryVO historyVO);
+
+	List<HistorySiteVO> getHistorySiteList(HistorySiteVO historySiteVO);
+
+	HistoryVO getHistory(HistoryVO historyVO);
 
 }

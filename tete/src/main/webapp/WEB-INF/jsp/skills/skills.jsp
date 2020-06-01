@@ -43,19 +43,17 @@
 			<div class="row">
 				<table class="table table-striped">
 					<colgroup>
-						<col width="50%">
-						<col width="50%">
+						<col width="100%">
 					</colgroup>
 					<thead class="thead-dark">
 						<tr>
 							<th scope="col">Skill</th>
-							<th scope="col">Explain</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
 							<td>
-								<div class="skill-imgs">
+								<div class="skill-imgs center">
 									<img src="/img/skills/skill-server-1.png" class="skill-img">
 									<img src="/img/skills/skill-server-2.png" class="skill-img">
 									<img src="/img/skills/skill-server-3.png" class="skill-img">
@@ -64,43 +62,28 @@
 									<img src="/img/skills/skill-server-6.png" class="skill-img">
 								</div>
 							</td>
-							<td>
-								<span class="skill-explain">
-									서버 운영 및 설정
-								</span>
-							</td>
 						</tr>
 						<tr>
 							<td>
-								<div class="skill-imgs">
+								<div class="skill-imgs center">
 									<img src="/img/skills/skill-lan-1.png" class="skill-img">
 									<img src="/img/skills/skill-lan-2.png" class="skill-img">
 									<img src="/img/skills/skill-lan-3.png" class="skill-img">
 								</div>
 							</td>
-							<td>
-								<span class="skill-explain">
-									주력 언어는 JAVA, php와 asp 사이트 이관 경험
-								</span>
-							</td>
 						</tr>
 						<tr>
 							<td>
-								<div class="skill-imgs">
+								<div class="skill-imgs center">
 									<img src="/img/skills/skill-db-1.png" class="skill-img">
 									<img src="/img/skills/skill-db-2.png" class="skill-img">
 									<img src="/img/skills/skill-db-3.png" class="skill-img">
 								</div>
 							</td>
-							<td>
-								<span class="skill-explain">
-									DB, 프로시져 및 스케줄링 활용 경험
-								</span>
-							</td>
 						</tr>
 						<tr>
 							<td>
-								<div class="skill-imgs">
+								<div class="skill-imgs center">
 									<img src="/img/skills/skill-web-1.png" class="skill-img">
 									<img src="/img/skills/skill-web-2.png" class="skill-img">
 									<img src="/img/skills/skill-web-3.png" class="skill-img">
@@ -108,28 +91,18 @@
 									<img src="/img/skills/skill-web-5.png" class="skill-img">
 								</div>
 							</td>
-							<td>
-								<span class="skill-explain">
-									웹 기본스킬, css 및 스크립트 제작
-								</span>
-							</td>
 						</tr>
 						<tr>
 							<td>
-								<div class="skill-imgs">
+								<div class="skill-imgs center">
 									<img src="/img/skills/skill-fwork-1.png" class="skill-img">
 									<img src="/img/skills/skill-fwork-2.png" class="skill-img">
 								</div>
 							</td>
-							<td>
-								<span class="skill-explain">
-									스프링프로젝트, 앵귤러JS프로젝트
-								</span>
-							</td>
 						</tr>
 						<tr>
 							<td>
-								<div class="skill-imgs">
+								<div class="skill-imgs center">
 									<img src="/img/skills/skill-etc-1.png" class="skill-img">
 									<img src="/img/skills/skill-etc-2.png" class="skill-img">
 									<img src="/img/skills/skill-etc-3.png" class="skill-img">
@@ -137,11 +110,6 @@
 									<img src="/img/skills/skill-etc-5.png" class="skill-img">
 									<img src="/img/skills/skill-etc-6.png" class="skill-img">
 								</div>
-							</td>
-							<td>
-								<span class="skill-explain">
-								 	기타 활용
-								 </span>
 							</td>
 						</tr>
 					</tbody>

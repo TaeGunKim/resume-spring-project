@@ -26,6 +26,10 @@ public class HistoryListVO implements Serializable {
 
 	private List<HistoryVO> historyList;
 
+	private List<HistoryDetailVO> historyDetailList;
+
+	private List<HistorySiteVO> historySiteList;
+
 
 	public List<HistoryVO> getHistoryList() {
 		return historyList;
@@ -34,6 +38,26 @@ public class HistoryListVO implements Serializable {
 
 	public void setHistoryList(List<HistoryVO> historyList) {
 		this.historyList = historyList;
+	}
+
+
+	public List<HistoryDetailVO> getHistoryDetailList() {
+		return historyDetailList;
+	}
+
+
+	public void setHistoryDetailList(List<HistoryDetailVO> historyDetailList) {
+		this.historyDetailList = historyDetailList;
+	}
+
+
+	public List<HistorySiteVO> getHistorySiteList() {
+		return historySiteList;
+	}
+
+
+	public void setHistorySiteList(List<HistorySiteVO> historySiteList) {
+		this.historySiteList = historySiteList;
 	}
 
 }

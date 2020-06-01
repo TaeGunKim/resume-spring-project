@@ -6361,3 +6361,9 @@ b, sup, sub, u, del {
 	text-align:center;
 	line-height:250px;
 }
+.strong {
+	font-weight:bold;
+}
+.center {
+	text-align:center;
+}

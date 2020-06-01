@@ -12,9 +12,46 @@
     	<result property="subtitle"		column="subtitle"		/>
     	<result property="startdate"	column="startdate"		/>
     	<result property="enddate"		column="enddate"		/>
+    	<result property="status"		column="status"			/>
     	<result property="description"	column="description"	/>
     	<result property="link"			column="link"			/>
     	<result property="create_date"	column="create_date"	/>
+    </resultMap>
+	<resultMap id="historyDetailResult" type="com.mycompany.myapp.shopcomponent.history.vo.HistoryDetailVO">
+    	<result property="id"			column="id"				/>
+    	<result property="history_id"	column="history_id"		/>
+    	<result property="company"		column="company"		/>
+    	<result property="orderer"		column="orderer"		/>
+    	<result property="project_nm"	column="project_nm"		/>
+    	<result property="site_nm"		column="site_nm"		/>
+    	<result property="site_img_1"	column="site_img_1"		/>
+    	<result property="site_img_2"	column="site_img_2"		/>
+    	<result property="site_img_3"	column="site_img_3"		/>
+    	<result property="site_img_4"	column="site_img_4"		/>
+    	<result property="startdate"	column="startdate"		/>
+    	<result property="enddate"		column="enddate"		/>
+    	<result property="status"		column="status"			/>
+    	<result property="worker_cnt"	column="worker_cnt"		/>
+    	<result property="language"		column="language"		/>
+    	<result property="tool"			column="tool"			/>
+    	<result property="part"			column="part"			/>
+    	<result property="create_date"	column="create_date"	/>
+    	<result property="update_date"	column="update_date"	/>
+    	<result property="del_yn"		column="del_yn"			/>
+    </resultMap>
+    <resultMap id="historySiteResult" type="com.mycompany.myapp.shopcomponent.history.vo.HistorySiteVO">
+    	<result property="id"			column="id"				/>
+		<result property="detail_id"	column="detail_id"		/>
+		<result property="history_id"	column="history_id"		/>
+		<result property="site_nm"		column="site_nm"		/>
+		<result property="site_part"	column="site_part"		/>
+		<result property="site_img_1"	column="site_img_1"		/>
+		<result property="site_img_2"	column="site_img_2"		/>
+		<result property="site_img_3"	column="site_img_3"		/>
+		<result property="site_img_4"	column="site_img_4"		/>
+		<result property="create_date"	column="create_date"	/>
+		<result property="update_date"	column="update_date"	/>
+		<result property="del_yn"		column="del_yn"			/>
     </resultMap>
 
 	<select id="getHistoryList" resultMap="historyResult">
@@ -25,6 +62,7 @@
 		    subtitle,
 		    startdate,
 		    enddate,
+		    status,
 		    description,
 		    link,
 		    create_date
@@ -37,4 +75,85 @@
 			</if>
 		    and del_yn ='N'
 	</select>
+
+	<select id="getHistoryDetailList" resultMap="historyDetailResult">
+	/** getHistoryDetailList */
+		select
+			id,
+			history_id,
+			company,
+			orderer,
+			project_nm,
+			site_nm,
+			site_img_1,
+			site_img_2,
+			site_img_3,
+			site_img_4,
+			startdate,
+			enddate,
+			status,
+			worker_cnt,
+			language,
+			tool,
+			part,
+			create_date,
+			update_date,
+			del_yn
+		from
+			tbl_history_detail
+		where
+			1=1
+		    and history_id= #{id}
+		    and del_yn ='N'
+		order by
+			startdate desc
+	</select>
+
+	<select id="getHistorySiteList" resultMap="historySiteResult">
+	/** getHistorySiteList */
+		select
+			id,
+			detail_id,
+			history_id,
+			site_nm,
+			site_part,
+			site_img_1,
+			site_img_2,
+			site_img_3,
+			site_img_4,
+			create_date,
+			update_date,
+			del_yn
+		from
+			tbl_history_site
+		where
+			1=1
+			and detail_id = #{detail_id}
+			and history_id = #{history_id}
+			and del_yn ='N'
+		order by
+			site_nm asc
+	</select>
+
+	<select id="getHistory" resultMap="historyResult">
+	/** getHistory */
+		select
+			type,
+		    title,
+		    subtitle,
+		    startdate,
+		    enddate,
+		    status,
+		    description,
+		    link,
+		    create_date
+		from
+			tbl_history
+		where
+			1=1
+		    and id= #{id}
+		    and del_yn ='N'
+		limit 1
+	</select>
+
 </mapper>

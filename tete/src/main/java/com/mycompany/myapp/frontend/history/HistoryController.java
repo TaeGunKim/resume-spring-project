@@ -18,6 +18,7 @@ import com.mycompany.myapp.frontend.main.MainController;
 import com.mycompany.myapp.shopcomponent.history.service.HistoryService;
 import com.mycompany.myapp.shopcomponent.history.vo.HistoryListVO;
 import com.mycompany.myapp.shopcomponent.history.vo.HistorySearchVO;
+import com.mycompany.myapp.shopcomponent.history.vo.HistoryVO;
 import com.mycompany.myapp.shopcomponent.menu.service.MenuService;
 import com.mycompany.myapp.shopcomponent.menu.vo.MenuListVO;
 
@@ -53,5 +54,23 @@ public class HistoryController {
 		model.put("menuList", menuList);
 
 		return new ModelAndView("history/historyList", model);
+	}
+
+	@RequestMapping(value = "/history/historyDetailList")
+	public ModelAndView historyDetailList(HttpServletRequest request, HttpServletResponse rsponse,Authentication authentication,HistoryVO historyVO){
+		LOG.debug("historyDetailList~~");
+
+		Map<String, Object> model = new HashMap<String, Object>();
+
+		HistoryVO history = historyService.getHistory(historyVO);
+		model.put("history", history);
+
+		HistoryListVO historyDetailList = historyService.getHistoryDetailList(historyVO);
+		model.put("historyDetailList", historyDetailList);
+
+		MenuListVO menuList = menuService.getUseMenu();
+		model.put("menuList", menuList);
+
+		return new ModelAndView("history/historyDetailList", model);
 	}
 }
