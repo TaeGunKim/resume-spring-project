@@ -80,6 +80,10 @@
 		<div class="container pt-30">
 			<div class="row">
 				<c:forEach items="${historyDetailList.historyDetailList}" var="list" varStatus="status">
+					<div class="typography" style="width:100%;">
+						<h1 style="width:50px;height:50px;background-color:lightsteelblue;text-align:center;border-radius:50px;float:left;">${status.count}</h1>
+						<h4 style="margin:10px;">${list.project_nm}</h4>
+					</div>
 					<c:if test="${list.site_img_1 != null && list.site_img_2 != null}">
 					<div class="pb-30" style="display:block;width:100%;height:500px;">
 						<div class="swiper-container">
@@ -157,7 +161,7 @@
 							</tr>
 							<tr>
 								<th>투입인원</th>
-								<td>${list.worker_cnt}</td>
+								<td>${list.worker_cnt} 명</td>
 							</tr>
 							<tr>
 								<th>개발언어</th>
@@ -181,22 +185,30 @@
 												<div class="swiper-wrapper">
 													<c:if test="${listSite.site_img_1 != null}">
 														<div class="swiper-slide">
-															<img src="/img/history/work/${listSite.site_img_1}" style="width:100%;"/>
+															<a href="/img/history/work/${listSite.site_img_1}" class="img-pop-up">
+																<img src="/img/history/work/${listSite.site_img_1}" style="width:100%;"/>
+															</a>
 														</div>
 													</c:if>
 													<c:if test="${listSite.site_img_2 != null}">
 														<div class="swiper-slide">
-															<img src="/img/history/work/${listSite.site_img_2}" style="width:100%;"/>
+															<a href="/img/history/work/${listSite.site_img_2}" class="img-pop-up">
+																<img src="/img/history/work/${listSite.site_img_2}" style="width:100%;"/>
+															</a>
 														</div>
 													</c:if>
 													<c:if test="${listSite.site_img_3 != null}">
 														<div class="swiper-slide">
-															<img src="/img/history/work/${listSite.site_img_3}" style="width:100%;"/>
+															<a href="/img/history/work/${listSite.site_img_3}" class="img-pop-up">
+																<img src="/img/history/work/${listSite.site_img_3}" style="width:100%;"/>
+															</a>
 														</div>
 													</c:if>
 													<c:if test="${listSite.site_img_4 != null}">
 														<div class="swiper-slide">
-															<img src="/img/history/work/${listSite.site_img_4}" style="width:100%;"/>
+															<a href="/img/history/work/${listSite.site_img_4}" class="img-pop-up">
+																<img src="/img/history/work/${listSite.site_img_4}" style="width:100%;"/>
+															</a>
 														</div>
 													</c:if>
 												</div>

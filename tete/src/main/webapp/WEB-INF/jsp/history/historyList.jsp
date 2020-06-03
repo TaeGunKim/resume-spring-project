@@ -52,12 +52,14 @@
 						<c:forEach items="${historyList.historyList}" var="list" varStatus="status">
 							<table class="table table-striped">
 								<colgroup>
+									<col width="10%">
 									<col width="30%">
 									<col width="30%">
-									<col width="40%">
+									<col width="30%">
 								</colgroup>
 								<thead class="thead-dark">
 									<tr>
+										<th scope="col">순번</th>
 										<th scope="col">기간</th>
 										<th scope="col">학교명</th>
 										<th scope="col">부서명</th>
@@ -65,6 +67,9 @@
 								</thead>
 								<tbody>
 									<tr>
+										<th>
+											${status.count}
+										</th>
 										<td>
 											<p>${fn:substring(list.startdate,0,7)} ~ ${fn:substring(list.enddate,0,7)}</p>
 											<p class="strong">${list.status}</p>
@@ -87,12 +92,14 @@
 						<c:forEach items="${historyList.historyList}" var="list" varStatus="status">
 							<table class="table table-striped">
 								<colgroup>
+									<col width="10%">
 									<col width="30%">
 									<col width="30%">
-									<col width="40%">
+									<col width="30%">
 								</colgroup>
 								<thead class="thead-dark">
 									<tr>
+										<th scope="col">순번</th>
 										<th scope="col">기간</th>
 										<th scope="col">기관명</th>
 										<th scope="col">교육명</th>
@@ -100,6 +107,9 @@
 								</thead>
 								<tbody>
 									<tr>
+										<th>
+											${status.count}
+										</th>
 										<td>
 											<p>${fn:substring(list.startdate,0,7)} ~ ${fn:substring(list.enddate,0,7)}</p>
 											<p class="strong">${list.status}</p>
@@ -122,12 +132,14 @@
 						<c:forEach items="${historyList.historyList}" var="list" varStatus="status">
 							<table class="table table-striped">
 								<colgroup>
+									<col width="10%">
 									<col width="30%">
 									<col width="30%">
-									<col width="40%">
+									<col width="30%">
 								</colgroup>
 								<thead class="thead-dark">
 									<tr>
+										<th scope="col">순번</th>
 										<th scope="col">기간</th>
 										<th scope="col">회사명</th>
 										<th scope="col">주업무</th>
@@ -135,6 +147,9 @@
 								</thead>
 								<tbody>
 									<tr>
+										<th>
+											${status.count}
+										</th>
 										<td>
 											<p>${fn:substring(list.startdate,0,7)} ~ ${fn:substring(list.enddate,0,7)}</p>
 											<p class="strong">${list.status}</p>

@@ -74,6 +74,7 @@
 		    and type= #{type}
 			</if>
 		    and del_yn ='N'
+		order by enddate desc, startdate desc
 	</select>
 
 	<select id="getHistoryDetailList" resultMap="historyDetailResult">
