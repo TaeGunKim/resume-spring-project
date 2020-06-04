@@ -189,9 +189,9 @@ function onclickDelete() {
 		                <c:if test="${pageContext.request.userPrincipal != null && pageContext.request.userPrincipal != ''}">
 		                	<c:set var="userId" value="${user.username}" />
 		                </c:if>
-                        <div class="section-padding" style="overflow:hidden;">
+                        <div class="section-padding centents" style="overflow:hidden;">
                         <style>
-                        	.section-padding img {width:100%;}
+                        	.centents img {width:100%;}
                         </style>
                         	<c:set var="contents" value="${messageVO.contents}" />
 							<c:out value="${contents}" escapeXml="false" />
