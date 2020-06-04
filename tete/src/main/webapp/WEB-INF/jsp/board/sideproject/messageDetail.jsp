@@ -189,7 +189,7 @@ function onclickDelete() {
 		                <c:if test="${pageContext.request.userPrincipal != null && pageContext.request.userPrincipal != ''}">
 		                	<c:set var="userId" value="${user.username}" />
 		                </c:if>
-                        <div class="section-padding centents" style="overflow:hidden;">
+                        <div class="centents" style="overflow:hidden;padding-top:20px;">
                         <style>
                         	.centents img {width:100%;}
                         </style>
