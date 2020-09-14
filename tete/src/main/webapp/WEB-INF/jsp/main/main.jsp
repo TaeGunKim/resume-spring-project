@@ -13,7 +13,7 @@
 
 </head>
 <body>
-	<!-- slider Area Start-->
+	<!-- slider Area Start -->
 	<div class="slider-area ">
 		<div class="slider-active">
 			<!-- Single Slider -->
@@ -25,7 +25,6 @@
 								<span data-animation="fadeInUp" data-delay=".4s">Welcome.</span>
 								<h1 data-animation="fadeInUp" data-delay=".6s">I'm Java Web Developer</h1>
 								<P data-animation="fadeInUp" data-delay=".8s">저를 알리기 위해 이 사이트를 만들었습니다.</P>
-								<!-- Hero-btn -->
 								<div class="hero__btn">
 									<a href="/about/about.do" class="btn hero-btn" data-animation="fadeInLeft" data-delay=".8s">제소개를할께요</a>
 									<a href="/history/historyList.do" class="btn border-btn ml-15" data-animation="fadeInRight" data-delay="1.0s">이력보기</a>
@@ -38,7 +37,7 @@
 			<!-- Single Slider -->
 		</div>
 	</div>
-	<!-- slider Area End-->
+	<!-- slider Area End -->
 	<!-- About Area start -->
 	<section class="about-area section-paddingt30">
 		<div class="container">

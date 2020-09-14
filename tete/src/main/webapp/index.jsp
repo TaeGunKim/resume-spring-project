@@ -8,7 +8,10 @@
 </head>
 <body>
 <script>
-location.href="/main.do";
+ location.href="/main.do";
 </script>
+
+<!-- localhost:8080~ -->
+
 </body>
 </html>
