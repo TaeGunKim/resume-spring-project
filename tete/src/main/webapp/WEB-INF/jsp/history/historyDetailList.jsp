@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Insert title here</title>
+<title>Hello Kimtg</title>
 <link rel="stylesheet" href="/css/swiper.min.css">
 <!-- Demo styles -->
   <style>
